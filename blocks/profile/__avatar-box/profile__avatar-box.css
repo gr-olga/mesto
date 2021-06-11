@@ -1,0 +1,6 @@
+.profile__avatar-box {
+    width: 169px;
+    height: 127px;
+    display: flex;
+    align-items: center;
+}

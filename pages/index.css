@@ -1,0 +1,28 @@
+@import "../vendor/normalize.css";
+@import "../fonts/Inter Web/inter.css";
+@import "../blocks/body/body.css";
+@import "../blocks/page/page.css";
+@import "../blocks/header/header.css";
+@import "../blocks/header/__logo/header__logo.css";
+@import "../blocks/line/line.css";
+
+@import "../blocks/profile/profile.css";
+@import "../blocks/profile/__avatar-box/profile__avatar-box.css";
+@import "../blocks/profile/__avatar/profile__avatar.css";
+@import "../blocks/profile/__add-button/profile__add-button.css";
+@import "../blocks/profile/__add-button/_img/add-button_img.css";
+@import "../blocks/profile/__info/profile__info.css";
+@import "../blocks/profile/__edit-button/profile__edit-button.css";
+@import "../blocks/profile/__edit-button/_img/edit-button_img.css";
+@import "../blocks/profile/__name/profile__name.css";
+@import "../blocks/profile/__extra/profile__extra.css";
+
+@import "../blocks/cards-grid/cards-grid.css";
+@import "../blocks/card/card.css";
+@import "../blocks/card/__image/card__image.css";
+@import "../blocks/card/__info/cards__info.css";
+@import "../blocks/card/__like/card__like.css";
+@import "../blocks/card/__title/card__title.css";
+
+@import "../blocks/footer/footer.css";
+@import "../blocks/footer/__copyright/footer__copyright.css";

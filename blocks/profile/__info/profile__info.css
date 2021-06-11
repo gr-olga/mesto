@@ -1,0 +1,6 @@
+.profile__info {
+    display: grid;
+    grid-template-columns: 300px 24px;
+    grid-template-rows: auto;
+    column-gap: 10px;
+}
