@@ -4,3 +4,10 @@
     display: flex;
     align-items: center;
 }
+@media screen and (max-width: 690px) {
+    .profile__avatar-box {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 26px;
+    }
+}

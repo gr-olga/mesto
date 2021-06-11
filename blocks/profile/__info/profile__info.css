@@ -4,3 +4,16 @@
     grid-template-rows: auto;
     column-gap: 10px;
 }
+
+@media screen and (max-width: 690px) {
+    .profile__info {
+        margin-bottom: 36px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .profile__info {
+        grid-template-columns: 200px 24px;
+    }
+}
+

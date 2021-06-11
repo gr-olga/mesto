@@ -7,3 +7,16 @@
     margin: 0;
     margin-top: 16px;
 }
+
+@media screen and (max-width: 690px) {
+    .profile__extra {
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .profile__extra {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

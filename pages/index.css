@@ -26,3 +26,7 @@
 
 @import "../blocks/footer/footer.css";
 @import "../blocks/footer/__copyright/footer__copyright.css";
+
+@import "../blocks/popup/popup.css";
+@import "../blocks/popup/__container/popup__container.css";
+@import "../blocks/popup/__title/popup__title.css";
