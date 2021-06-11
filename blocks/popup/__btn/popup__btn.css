@@ -1,0 +1,12 @@
+.popup__btn {
+    background-image: url("../../../images/cros-btn.png");
+    background-size: 40px;
+    background-position: center;
+    width: 40px;
+    height: 40px;
+    align-self: flex-end;
+    margin-top: -50px;
+    margin-right: -50px;
+    border: none;
+    transform: rotate(-45deg);
+}
