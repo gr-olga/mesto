@@ -7,4 +7,27 @@
     margin-top: 10px;
     border: none;
     color: #FFFFFF;
+    margin-bottom: 37px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+}
+
+.popup__save:active {
+    opacity: 0.8;
+    border-radius: 2px;
+}
+
+@media screen and (max-width: 550px) {
+    .popup__save {
+        width: 238px;
+        height: 46px;
+        font-size: 14px;
+        line-height: 17px;
+        margin-top: 15px;
+        margin-bottom: 25px;
+    }
 }
