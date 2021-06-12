@@ -34,3 +34,4 @@
 @import "../blocks/popup/__input/popup__input.css";
 @import "../blocks/popup/__save/popup__save.css";
 @import "../blocks/popup/__btn/popup__btn.css";
+@import "../blocks/popup/_is-open/popup_is-open.css";
