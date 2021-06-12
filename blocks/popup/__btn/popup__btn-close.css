@@ -1,4 +1,4 @@
-.popup__btn {
+.popup__btn-close {
     background-image: url("../../../images/cros-btn.png");
     background-size: 40px;
     background-position: center;
@@ -12,7 +12,7 @@
     cursor: pointer;
 }
 
-.popup__btn:active {
+.popup__btn-close:active {
     transform: rotate(-45deg);
     opacity: 0.6;
 
@@ -20,7 +20,7 @@
 }
 
 @media screen and (max-width: 550px) {
-    .popup__btn {
+    .popup__btn-close {
         width: 26px;
         height: 26px;
         margin-right: 0;
