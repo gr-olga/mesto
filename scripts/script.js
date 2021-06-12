@@ -6,6 +6,7 @@ const profileNameElement = document.querySelector('.profile__name');
 const profileExtraElement = document.querySelector('.profile__extra');
 const inputNameElement = document.querySelector('.input_name');
 const inputExtraElement = document.querySelector('.input_extra');
+const formElement = document.querySelector('.popup__form');
 
 const openPopup = function () {
     inputNameElement.value = profileNameElement.innerText;
@@ -21,3 +22,14 @@ const closePopup = function () {
 openPopupElement.addEventListener('click', openPopup);
 closePopupElement.addEventListener('click', closePopup);
 
+function formSubmitHandler(evt) {
+    evt.preventDefault();
+    const nameValue = inputNameElement.value
+    const extraValue = inputExtraElement.value
+
+    profileNameElement.textContent = nameValue;
+    profileExtraElement.textContent = extraValue;
+    closePopup();
+}
+
+formElement.addEventListener('submit', formSubmitHandler);

@@ -9,6 +9,7 @@
     align-self: center;
     background-size: 53%;
     background-position: center;
+    cursor: pointer;
 }
 
 .profile__edit-button:hover {
