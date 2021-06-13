@@ -3,3 +3,9 @@
     display: flex;
     align-items: flex-start;
 }
+@media screen and (max-width: 500px) {
+    .header {
+        max-width: 300px;
+        margin: auto;
+    }
+}
