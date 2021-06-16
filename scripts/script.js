@@ -1,19 +1,20 @@
-let popupElement = document.querySelector('.popup');
-let openPopupElement = document.querySelector('.profile__edit-button');
-let closePopupElement = document.querySelector('.popup__btn-close');
-let profileNameElement = document.querySelector('.profile__name');
-let profileExtraElement = document.querySelector('.profile__extra');
-let inputNameElement = document.querySelector('.popup__input[name="name"]');
-let inputExtraElement = document.querySelector('.popup__input[name="extra"]');
-let formElement = document.querySelector('.popup__form');
+const popupElement = document.querySelector('.popup');
+const openPopupElement = document.querySelector('.profile__edit-button');
+const closePopupElement = document.querySelector('.popup__btn-close');
+const profileNameElement = document.querySelector('.profile__name');
+const profileExtraElement = document.querySelector('.profile__extra');
+const inputNameElement = document.querySelector('.popup__input[name="name"]');
+const inputExtraElement = document.querySelector('.popup__input[name="extra"]');
+const formElement = document.querySelector('.popup__form');
 
-let openPopup = function () {
+
+const openPopup = function () {
     inputNameElement.value = profileNameElement.innerText;
     inputExtraElement.value = profileExtraElement.innerText;
     popupElement.classList.add('popup_is-open');
 }
 
-let closePopup = function () {
+const closePopup = function () {
     popupElement.classList.remove('popup_is-open')
 }
 
