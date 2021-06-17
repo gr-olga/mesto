@@ -7,6 +7,11 @@ const inputNameElement = document.querySelector('.popup__input[name="name"]');
 const inputExtraElement = document.querySelector('.popup__input[name="extra"]');
 const formElement = document.querySelector('.popup__form');
 
+const deleteCardElement = document.querySelector('.card__remove');
+
+const removeCard = function () {
+    // удалить карточку на которой кликнули
+}
 
 const openPopup = function () {
     inputNameElement.value = profileNameElement.innerText;
@@ -31,3 +36,5 @@ function formSubmitHandler(evt) {
 openPopupElement.addEventListener('click', openPopup);
 closePopupElement.addEventListener('click', closePopup);
 formElement.addEventListener('submit', formSubmitHandler);
+
+deleteCardElement.addEventListener('click', removeCard);
