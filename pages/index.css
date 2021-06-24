@@ -35,4 +35,5 @@
 @import "../blocks/popup/_is-open/popup_is-open.css";
 
 @import "../blocks/popup-card/popup-card.css";
+@import "../blocks/popup-card/__container/popup-card__container.css";
 @import "../blocks/popup-card/__img/popup__img.css";
