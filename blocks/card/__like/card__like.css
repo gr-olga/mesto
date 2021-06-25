@@ -12,8 +12,8 @@
     opacity: 0.5;
 }
 
-.card__like:active {
-    background-image: url("../../../images/active-like.svg");
-    background-size: 22px;
-    opacity: 1;
-}
+/*.card__like:active {*/
+/*    background-image: url("../../../images/active-like.svg");*/
+/*    background-size: 22px;*/
+/*    opacity: 1;*/
+/*}*/

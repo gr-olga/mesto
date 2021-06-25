@@ -114,3 +114,10 @@ openPopupElement.addEventListener('click', openPopup);
 editPopupCloseButtonElement.addEventListener('click', closePopup);
 formElement.addEventListener('submit', formSubmitHandler);
 
+
+const likeButtonElement = document.querySelector('.card__like');
+
+likeButtonElement.addEventListener('click', function (evt) {
+    evt.preventDefault();
+    likeButtonElement.classList.add('card__like-active');
+});
