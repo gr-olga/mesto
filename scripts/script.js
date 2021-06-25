@@ -38,10 +38,7 @@ const initialCards = [
 ];
 
 
-initialCards.forEach(function (obj) {
-    // console.log(obj.name, obj.link)
-    renderCard(obj.name, obj.link)
-});
+initialCards.forEach((obj) => renderCard(obj.name, obj.link));
 
 
 function renderCard(cardTitle, link) {
@@ -58,6 +55,10 @@ const openPopup = function () {
     inputNameElement.value = profileNameElement.innerText;
     inputExtraElement.value = profileExtraElement.innerText;
     editProfilePopupElement.classList.add('popup_is-open');
+    setTimeout(() => {
+        editProfilePopupElement.querySelector('.popup__container').classList.add('popup__container_active');
+    }, 4)
+
 }
 
 const closePopup = function (evt) {
@@ -76,14 +77,15 @@ function formSubmitHandler(evt) {
 
 const addCardPopupElement = document.querySelector('#add_card_popup');
 const addPopupCloseButtonElement = addCardPopupElement.querySelector('.popup__btn-close');
-const cardTitleElement = document.querySelector('.card__title');
-// const cardLinkElement = document.querySelector('.card__image');
 const inputCardTitleElement = document.querySelector('.popup__input[name="cardTitle"]');
 const inputCardLinkElement = document.querySelector('.popup__input[name="link"]');
 
 
 const openAddCardPopup = function () {
     addCardPopupElement.classList.add('popup_is-open');
+    setTimeout(() => {
+        addCardPopupElement.querySelector('.popup__container').classList.add('popup__container_active');
+    }, 4)
 }
 
 const closeAddCardPopup = function () {
@@ -130,7 +132,6 @@ linksArr.forEach((el) => {
     el.addEventListener('click', function (evt) {
         evt.preventDefault();
         const image = evt.target.src
-        // const itemPopup = document.querySelector('.popup-card')
         itemPopup.classList.add('popup-card_is-open');
         itemPopup.querySelector('.popup__img').src = image;
     })
