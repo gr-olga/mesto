@@ -1,5 +1,4 @@
 const editProfilePopupElement = document.querySelector('#edit_profile_popup');
-
 const openPopupElement = document.querySelector('.profile__edit-button');
 const editPopupCloseButtonElement = editProfilePopupElement.querySelector('.popup__btn-close');
 const profileNameElement = document.querySelector('.profile__name');
@@ -9,7 +8,6 @@ const inputExtraElement = document.querySelector('.popup__input[name="extra"]');
 const formElement = document.querySelector('.popup__form[name = "profileInfo"]');
 const openAddCardPopupElement = document.querySelector('.profile__add-card-button');
 const formCardElement = document.querySelector('.popup__form[name = "newPlace"]');
-const deleteCardElement = document.querySelector('.card__remove');
 
 
 const initialCards = [
@@ -56,10 +54,6 @@ function renderCard(cardTitle, link) {
 }
 
 
-// const removeCard = function (target) {
-//     cardsGrid.remove(cardElement);
-// }
-
 const openPopup = function () {
     inputNameElement.value = profileNameElement.innerText;
     inputExtraElement.value = profileExtraElement.innerText;
@@ -75,7 +69,6 @@ function formSubmitHandler(evt) {
     evt.preventDefault();
     const nameValue = inputNameElement.value
     const extraValue = inputExtraElement.value
-
     profileNameElement.textContent = nameValue;
     profileExtraElement.textContent = extraValue;
     closePopup();
@@ -101,7 +94,6 @@ function formCardSubmitHandler(evt) {
     evt.preventDefault();
     const titleValue = inputCardTitleElement.value
     const linkValue = inputCardLinkElement.value
-
     renderCard(titleValue, linkValue)
     closeAddCardPopup();
 }
@@ -116,8 +108,19 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 
 const likeButtonElement = document.querySelector('.card__like');
-
 likeButtonElement.addEventListener('click', function (evt) {
     evt.preventDefault();
     likeButtonElement.classList.add('card__like-active');
 });
+
+
+const deleteCardElementsList = document.querySelectorAll('.card__remove');
+const elementsArr = Array.from(deleteCardElementsList);
+elementsArr.forEach((elem) => {
+    elem.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        const cardItem = elem.closest('.card');
+        cardItem.remove();
+    });
+})
+

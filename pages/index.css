@@ -38,3 +38,4 @@
 @import "../blocks/popup-card/popup-card.css";
 @import "../blocks/popup-card/__container/popup-card__container.css";
 @import "../blocks/popup-card/__img/popup__img.css";
+@import "../blocks/popup-card/_is-open/popup-card_is-open.css";
