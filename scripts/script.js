@@ -77,7 +77,7 @@ function formSubmitHandler(evt) {
 const addCardPopupElement = document.querySelector('#add_card_popup');
 const addPopupCloseButtonElement = addCardPopupElement.querySelector('.popup__btn-close');
 const cardTitleElement = document.querySelector('.card__title');
-const cardLinkElement = document.querySelector('.card__image');
+// const cardLinkElement = document.querySelector('.card__image');
 const inputCardTitleElement = document.querySelector('.popup__input[name="cardTitle"]');
 const inputCardLinkElement = document.querySelector('.popup__input[name="link"]');
 
@@ -123,4 +123,20 @@ elementsArr.forEach((elem) => {
         cardItem.remove();
     });
 })
+const itemPopup = document.querySelector('.popup-card')
+const cardLinkElement = document.querySelectorAll('.card__image');
+const linksArr = Array.from(cardLinkElement);
+linksArr.forEach((el) => {
+    el.addEventListener('click', function (evt) {
+        evt.preventDefault();
+        const image = evt.target.src
+        // const itemPopup = document.querySelector('.popup-card')
+        itemPopup.classList.add('popup-card_is-open');
+        itemPopup.querySelector('.popup__img').src = image;
+    })
+})
 
+const closeImg = document.querySelector('.popup-card__btn-close');
+closeImg.addEventListener('click', function () {
+    itemPopup.classList.remove('popup-card_is-open');
+})

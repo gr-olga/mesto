@@ -1,0 +1,26 @@
+.popup-card__btn-close {
+    background-image: url("../../../images/cros-btn.png");
+    background-size: 40px;
+    background-position: center;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    align-self: flex-end;
+    margin-top: -50px;
+    margin-right: -50px;
+    border: none;
+    cursor: pointer;
+}
+
+.popup-card__btn-close:active {
+    transform: rotate(-45deg);
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 550px) {
+    .popup-card__btn-close {
+        width: 26px;
+        height: 26px;
+        margin-right: 0;
+    }
+}
