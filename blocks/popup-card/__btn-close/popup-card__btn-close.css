@@ -5,11 +5,10 @@
     background-color: transparent;
     width: 40px;
     height: 40px;
-    align-self: flex-end;
-    margin-top: -50px;
-    margin-right: -50px;
     border: none;
     cursor: pointer;
+    margin-left: 868px;
+    margin-bottom: 16px;
 }
 
 .popup-card__btn-close:active {
@@ -21,6 +20,8 @@
     .popup-card__btn-close {
         width: 26px;
         height: 26px;
-        margin-right: 0;
+        margin-top: 0;
+        margin-bottom: 16px;
+        margin-right: 40px;
     }
 }
