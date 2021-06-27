@@ -137,7 +137,7 @@ function popupCard(cardElem) {
         evt.preventDefault();
         const image = evt.target.src
         itemPopup.classList.add('popup-card_is-open');
-        itemPopup.querySelector('.popup__img').src = image;
+        itemPopup.querySelector('.popup-card__img').src = image;
         makeCardVisible(itemPopup)
     });
 }

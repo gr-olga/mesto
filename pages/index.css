@@ -38,7 +38,7 @@
 
 @import "../blocks/popup-card/popup-card.css";
 @import "../blocks/popup-card/__container/popup-card__container.css";
-@import "../blocks/popup-card/__img/popup__img.css";
+@import "../blocks/popup-card/__img/popup-card__img.css";
 @import "../blocks/popup-card/_is-open/popup-card_is-open.css";
 @import "../blocks/popup-card/__btn-close/popup-card__btn-close.css";
 @import "../blocks/popup-card/__container/_active/popup-card__container_active.css";
