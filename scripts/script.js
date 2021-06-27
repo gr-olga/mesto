@@ -138,6 +138,7 @@ function popupCard(cardElem) {
         const image = evt.target.src
         itemPopup.classList.add('popup-card_is-open');
         itemPopup.querySelector('.popup__img').src = image;
+        makeCardVisible(itemPopup)
     });
 }
 
@@ -145,8 +146,20 @@ function closeCardPopup(cardElem) {
     const closeImg = document.querySelector('.popup-card__btn-close');
     closeImg.addEventListener('click', function () {
         const itemPopup = document.querySelector('.popup-card')
-        itemPopup.classList.remove('popup-card_is-open');
+        makeCardInvisible(itemPopup)
     })
 }
 
 
+function makeCardVisible(el) {
+    setTimeout(() => {
+        el.querySelector('.popup-card__container').classList.add('popup-card__container_active');
+    }, 4)
+}
+
+function makeCardInvisible(el) {
+    el.querySelector('.popup-card__container').classList.remove('popup-card__container_active');
+    setTimeout(() => {
+        el.classList.remove('popup-card_is-open');
+    }, 350)
+}
