@@ -7,8 +7,9 @@
     height: 40px;
     border: none;
     cursor: pointer;
-    margin-left: 868px;
-    margin-bottom: 16px;
+    position: absolute;
+    right: -50px;
+    top: -50px;
 }
 
 .popup-card__btn-close:active {
@@ -20,8 +21,7 @@
     .popup-card__btn-close {
         width: 26px;
         height: 26px;
-        margin-top: 0;
-        margin-bottom: 16px;
-        margin-right: 40px;
+        right: 30px;
+        top: 30px;
     }
 }
