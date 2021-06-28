@@ -89,15 +89,10 @@ function createPopupCard(cardElem) {
         const image = evt.target.src
         const cardItem = cardLinkElement.closest('.card');
         const titleText = cardItem.querySelector('.card__title');
-        console.log(titleText.textContent)
         openPopup(itemPopup);
         itemPopup.querySelector('.popup__img').src = image;
         itemPopup.querySelector('.popup__image-title').textContent = titleText.textContent;
     });
-}
-
-function renderPopupCard() {
-
 }
 
 const closeImg = document.querySelector('.popup__card-btn-close');
