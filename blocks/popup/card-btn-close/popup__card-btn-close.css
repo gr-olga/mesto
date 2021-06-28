@@ -1,4 +1,4 @@
-.popup-card__btn-close {
+.popup__card-btn-close {
     background-image: url("../../../images/cros-btn.png");
     background-size: 40px;
     background-position: center;
@@ -12,13 +12,13 @@
     top: -50px;
 }
 
-.popup-card__btn-close:active {
+.popup__card-btn-close:active {
     transform: rotate(-45deg);
     opacity: 0.6;
 }
 
 @media screen and (max-width: 550px) {
-    .popup-card__btn-close {
+    .popup__card-btn-close {
         width: 26px;
         height: 26px;
         right: 30px;

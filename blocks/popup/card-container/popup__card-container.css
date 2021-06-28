@@ -1,13 +1,12 @@
-.popup-card__container {
+.popup__card-container {
     height: 100%;
     position: relative;
     margin-top: 100px;
-    opacity: 0;
     transition: opacity .35s ease-in-out;
 }
 
 @media screen and (max-width: 500px) {
-    .popup-card__container {
+    .popup__card-container {
         max-width: 100%;
         margin: 0;
         padding: 76px 40px;
