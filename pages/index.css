@@ -34,7 +34,6 @@
 @import "../blocks/popup/__save/popup__save.css";
 @import "../blocks/popup/__btn/popup__btn-close.css";
 @import "../blocks/popup/_is-open/popup_is-open.css";
-@import "../blocks/popup/__container/_active/popup__container_active.css";
 
 @import "../blocks/popup/card-container/popup__card-container.css";
 @import "../blocks/popup/__img/popup__img.css";
