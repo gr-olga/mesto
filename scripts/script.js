@@ -67,7 +67,6 @@ function renderCard(cardElement) {
 function addLikeToggle(cardElem) {
     const likeButtonElement = cardElem.querySelector('.card__like');
     likeButtonElement.addEventListener('click', (evt) => {
-        evt.preventDefault();
         likeButtonElement.classList.add('card__like-active');
     });
 }
@@ -94,7 +93,6 @@ function createPopupCard(cardElem) {
         openPopup(itemPopup);
         itemPopup.querySelector('.popup__img').src = image;
         itemPopup.querySelector('.popup__image-title').textContent = titleText.textContent;
-
     });
 }
 
@@ -105,10 +103,6 @@ function renderPopupCard() {
 const closeImg = document.querySelector('.popup__card-btn-close');
 closeImg.addEventListener('click', () => closePopup(itemPopup));
 
-// function madeGrid() {
-//     const cardsGrid = document.querySelector('.cards-grid');
-//     cardsGrid.prepend(cardElement);
-// }
 
 function openPopup(el) {
     el.classList.add('popup_is-open')
