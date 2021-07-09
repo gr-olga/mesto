@@ -40,3 +40,5 @@
 @import "../blocks/popup/_card/popup_card.css";
 @import "../blocks/popup/__image-title/popup__image-title.css";
 @import "../blocks/popup/card-btn-close/popup__card-btn-close.css";
+
+@import "../blocks/popup/__input/_type_error/popup__input_typr_error.css";

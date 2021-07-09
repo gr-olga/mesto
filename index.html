@@ -47,10 +47,14 @@
             <h2 class="popup__title">Редактировать профиль</h2>
             <form class="popup__form" name="profileInfo">
                 <label>
-                    <input name="profileName" class="popup__input" type="text" placeholder="Имя">
+                    <input name="profileName" id="profile-name" class="popup__input" type="text" placeholder="Имя"
+                           minlength="2" maxlength="40" required>
+                    <span class="popup__input_type_error profile-name-error"></span>
                 </label>
                 <label>
-                    <input name="extra" class="popup__input" type="text" placeholder="О себе">
+                    <input name="extra" id="extra" class="popup__input" type="text" placeholder="О себе" minlength="2"
+                           maxlength="200" required>
+                    <span class="popup__input_type_error extra-error"></span>
                 </label>
                 <button type="submit" class="popup__save">Сохранить</button>
             </form>
@@ -62,10 +66,14 @@
             <h2 class="popup__title">Новое место</h2>
             <form class="popup__form" name="newPlace">
                 <label>
-                    <input name="cardTitle" class="popup__input" type="text" placeholder="Название" required>
+                    <input name="cardTitle" id="card-title" class="popup__input" type="text" placeholder="Название"
+                           minlength="2" maxlength="30" required>
+                    <span class="popup__input_error popup__input_type_error"></span>
                 </label>
                 <label>
-                    <input name="link" class="popup__input" type="text" placeholder="Cсылка на картинку">
+                    <input name="link" id="link" class="popup__input" type="url" placeholder="Cсылка на картинку"
+                           required>
+                    <span></span>
                 </label>
                 <button type="submit" class="popup__save">Сохранить</button>
             </form>
@@ -80,5 +88,6 @@
     </div>
 </section>
 <script src="scripts/script.js"></script>
+<script src="validate.js"></script>
 </body>
 </html>

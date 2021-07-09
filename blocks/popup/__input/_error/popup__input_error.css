@@ -1,25 +1,14 @@
-.popup__input {
+.popup__input_error {
     width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: 1px solid red;
     border-top: none;
     border-left: none;
     border-right: none;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     font-family: Inter, 'Arial', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
     color: #000000;
-}
-
-@media screen and (max-width: 550px) {
-    .popup__input {
-        font-size: 14px;
-        line-height: 17px;
-    }
-}
-
-.popup__input_error {
-
 }

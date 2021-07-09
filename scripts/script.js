@@ -147,7 +147,7 @@ editPopupCloseButtonElement.addEventListener('click', () => closePopup(editProfi
 formElement.addEventListener('submit', formSubmitHandler);
 
 
+ //todo Закрытие попапа кликом на оверлей
 
 
-
-
+// todo Закрытие попапа нажатием на Esc
