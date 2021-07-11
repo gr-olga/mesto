@@ -42,3 +42,4 @@
 @import "../blocks/popup/card-btn-close/popup__card-btn-close.css";
 
 @import "../blocks/popup/__input/_type_error/popup__input_typr_error.css";
+@import "../blocks/popup/__label/popup__label.css";
