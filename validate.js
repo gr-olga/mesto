@@ -1,7 +1,5 @@
 const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
 
-// const buttonElement = formElement.querySelector('#popup__save');
-
 function toggleButtonState(inputList, buttonElement) {
     if (hasInputInvalid(inputList)) {
         buttonElement.classList.add('popup__save_invalid');
@@ -20,7 +18,6 @@ function hasInputInvalid(inputList) {
 
 function showInputError(formElement, inputElement, errorMessage) {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-    console.log(inputElement);
     inputElement.classList.add('popup__input_invalid');
     errorElement.textContent = errorMessage;
     errorElement.classList.add('popup__input_type_error_active');

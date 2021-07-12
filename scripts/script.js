@@ -12,7 +12,7 @@ const addCardPopupElement = document.querySelector('#add_card_popup');
 const addPopupCloseButtonElement = addCardPopupElement.querySelector('.popup__btn-close');
 const inputCardTitleElement = document.querySelector('.popup__input[name="cardTitle"]');
 const inputCardLinkElement = document.querySelector('.popup__input[name="link"]');
-
+const escapeButtonCode = 27;
 
 const initialCards = [
     {
@@ -138,16 +138,28 @@ function formCardSubmitHandler(evt) {
     closePopup(addCardPopupElement);
 }
 
+
 openAddCardPopupElement.addEventListener('click', openAddCardPopup);
 addPopupCloseButtonElement.addEventListener('click', () => closePopup(addCardPopupElement))
 formCardElement.addEventListener('submit', formCardSubmitHandler);
+
 
 openPopupElement.addEventListener('click', openEditPopup);
 editPopupCloseButtonElement.addEventListener('click', () => closePopup(editProfilePopupElement));
 formElement.addEventListener('submit', formSubmitHandler);
 
 
- //todo Закрытие попапа кликом на оверлей
+const popupElementList = document.querySelectorAll('.popup')
+popupElementList.forEach((popup) => {
+    popup.addEventListener('click', (evt) => closePopup(evt.target));
+    closePopupOnKeyCode(popup, escapeButtonCode)
+})
 
 
-// todo Закрытие попапа нажатием на Esc
+function closePopupOnKeyCode(popup, keyCode) {
+    document.addEventListener('keydown', (evt) => {
+        if (evt.keyCode === keyCode) closePopup(popup)
+    })
+}
+
+
