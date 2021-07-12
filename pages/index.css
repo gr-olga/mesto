@@ -41,7 +41,7 @@
 @import "../blocks/popup/__image-title/popup__image-title.css";
 @import "../blocks/popup/card-btn-close/popup__card-btn-close.css";
 
-@import "../blocks/popup/__input/_error/popup__input_type_error.css";
+@import "../blocks/popup/__message-error/popup__message-error.css";
 @import "../blocks/popup/__label/popup__label.css";
 @import "../blocks/popup/__input/_invalid/popup__input_invalid.css";
 
