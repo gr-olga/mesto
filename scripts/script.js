@@ -109,14 +109,18 @@ function closePopup(el) {
     el.removeEventListener('keydown', closeOnESC);
 }
 
+function resetFormErrors(popupElement, inputAElement, inputBElement, buttonElement) {
+    hideInputError(popupElement, inputAElement)
+    hideInputError(popupElement, inputBElement)
+    buttonElement.classList.remove('popup__save_invalid');
+    buttonElement.removeAttribute('disable')
+}
+
 const openEditPopup = function () {
     inputNameElement.value = profileNameElement.innerText;
     inputExtraElement.value = profileExtraElement.innerText;
     openPopup(editProfilePopupElement);
-    hideInputError(editProfilePopupElement, inputNameElement)
-    hideInputError(editProfilePopupElement, inputExtraElement)
-    buttonProfileElement.classList.remove('popup__save_invalid');
-    buttonProfileElement.removeAttribute('disable')
+    resetFormErrors(editProfilePopupElement, inputNameElement, inputExtraElement, buttonProfileElement);
 }
 
 function formSubmitHandler(evt) {
@@ -132,10 +136,7 @@ const openAddCardPopup = function () {
     inputCardTitleElement.value = '';
     inputCardLinkElement.value = '';
     openPopup(addCardPopupElement);
-    hideInputError(addCardPopupElement, inputCardTitleElement)
-    hideInputError(addCardPopupElement, inputCardLinkElement)
-    buttonCardElement.classList.remove('popup__save_invalid');
-    buttonCardElement.removeAttribute('disable')
+    resetFormErrors(addCardPopupElement, inputCardTitleElement, inputCardLinkElement, buttonCardElement);
 }
 
 function formCardSubmitHandler(evt) {
