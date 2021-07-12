@@ -20,7 +20,7 @@ function showInputError(formElement, inputElement, errorMessage) {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add('popup__input_invalid');
     errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__input_error_active');
+    errorElement.classList.add('popup__input_type_error_active');
 }
 function hideInputError(formElement, inputElement) {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
@@ -65,6 +65,6 @@ enableValidation({
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
     inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_error',
+    inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
 });
