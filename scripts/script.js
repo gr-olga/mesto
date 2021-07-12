@@ -13,7 +13,8 @@ const addPopupCloseButtonElement = addCardPopupElement.querySelector('.popup__bt
 const inputCardTitleElement = document.querySelector('.popup__input[name="cardTitle"]');
 const inputCardLinkElement = document.querySelector('.popup__input[name="link"]');
 const escapeButtonCode = 27;
-
+const buttonProfileElement = formElement.querySelector('.popup__save');
+const buttonCardElement = formCardElement.querySelector('.popup__save');
 const initialCards = [
     {
         name: 'Архыз',
@@ -98,9 +99,9 @@ function createPopupCard(cardElem) {
 const closeImg = document.querySelector('.popup__card-btn-close');
 closeImg.addEventListener('click', () => closePopup(itemPopup));
 
-
 function openPopup(el) {
     el.classList.add('popup_is-open');
+
 }
 
 function closePopup(el) {
@@ -112,6 +113,10 @@ const openEditPopup = function () {
     inputNameElement.value = profileNameElement.innerText;
     inputExtraElement.value = profileExtraElement.innerText;
     openPopup(editProfilePopupElement);
+    hideInputError(editProfilePopupElement, inputNameElement)
+    hideInputError(editProfilePopupElement, inputExtraElement)
+    buttonProfileElement.classList.remove('popup__save_invalid');
+    buttonProfileElement.removeAttribute('disable')
 }
 
 function formSubmitHandler(evt) {
@@ -123,11 +128,14 @@ function formSubmitHandler(evt) {
     closePopup(editProfilePopupElement);
 }
 
-
 const openAddCardPopup = function () {
     inputCardTitleElement.value = '';
     inputCardLinkElement.value = '';
     openPopup(addCardPopupElement);
+    hideInputError(addCardPopupElement, inputCardTitleElement)
+    hideInputError(addCardPopupElement, inputCardLinkElement)
+    buttonCardElement.classList.remove('popup__save_invalid');
+    buttonCardElement.removeAttribute('disable')
 }
 
 function formCardSubmitHandler(evt) {
@@ -139,23 +147,19 @@ function formCardSubmitHandler(evt) {
     closePopup(addCardPopupElement);
 }
 
-
 openAddCardPopupElement.addEventListener('click', openAddCardPopup);
 addPopupCloseButtonElement.addEventListener('click', () => closePopup(addCardPopupElement))
 formCardElement.addEventListener('submit', formCardSubmitHandler);
 
-
 openPopupElement.addEventListener('click', openEditPopup);
 editPopupCloseButtonElement.addEventListener('click', () => closePopup(editProfilePopupElement));
 formElement.addEventListener('submit', formSubmitHandler);
-
 
 const popupElementList = document.querySelectorAll('.popup')
 popupElementList.forEach((popup) => {
     popup.addEventListener('click', (evt) => closePopup(evt.target));
     closePopupOnKeyCode(popup, escapeButtonCode)
 })
-
 
 function closeOnESC(keyCode, popup) {
     return (evt) => {

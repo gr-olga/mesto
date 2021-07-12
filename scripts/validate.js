@@ -22,14 +22,12 @@ function showInputError(formElement, inputElement, errorMessage) {
     errorElement.textContent = errorMessage;
     errorElement.classList.add('popup__input_type-error_active');
 }
-
 function hideInputError(formElement, inputElement) {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove('popup__input_invalid');
     errorElement.classList.remove('popup__input-error_active');
     errorElement.textContent = '';
 }
-
 
 function isValid(formElement, inputElement) {
     const errorMessage = inputElement.validationMessage
@@ -39,7 +37,6 @@ function isValid(formElement, inputElement) {
     } else {
         hideInputError(formElement, inputElement)
     }
-
     const buttonElement = formElement.querySelector('.popup__save');
     toggleButtonState(inputList, buttonElement)
 }
