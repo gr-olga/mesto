@@ -100,11 +100,12 @@ closeImg.addEventListener('click', () => closePopup(itemPopup));
 
 
 function openPopup(el) {
-    el.classList.add('popup_is-open')
+    el.classList.add('popup_is-open');
 }
 
 function closePopup(el) {
-    el.classList.remove('popup_is-open')
+    el.classList.remove('popup_is-open');
+    el.removeEventListener('keydown', closeOnESC);
 }
 
 const openEditPopup = function () {
@@ -156,10 +157,14 @@ popupElementList.forEach((popup) => {
 })
 
 
-function closePopupOnKeyCode(popup, keyCode) {
-    document.addEventListener('keydown', (evt) => {
+function closeOnESC(keyCode, popup) {
+    return (evt) => {
         if (evt.keyCode === keyCode) closePopup(popup)
-    })
+    };
+}
+
+function closePopupOnKeyCode(popup, keyCode) {
+    document.addEventListener('keydown', closeOnESC(keyCode, popup))
 }
 
 
