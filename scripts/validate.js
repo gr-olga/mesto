@@ -1,5 +1,5 @@
-const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
 
+const buttonElement = formElement.querySelector('.popup__save');
 function toggleButtonState(inputList, buttonElement) {
     if (hasInputInvalid(inputList)) {
         buttonElement.classList.add('popup__save_invalid');
@@ -31,13 +31,12 @@ function hideInputError(formElement, inputElement) {
 
 function isValid(formElement, inputElement) {
     const errorMessage = inputElement.validationMessage
-    const buttonElement = formElement.querySelector('.popup__save');
+
     if (!inputElement.validity.valid) {
         showInputError(formElement, inputElement, errorMessage);
     } else {
         hideInputError(formElement, inputElement)
     }
-    toggleButtonState(inputList, buttonElement)
 }
 
 function setEventListener(formElement) {
@@ -45,6 +44,7 @@ function setEventListener(formElement) {
     inputList.forEach(inputElement => {
         inputElement.addEventListener('input', (event) => {
             isValid(formElement, inputElement)
+            toggleButtonState(inputList, buttonElement)
         })
     })
 }
