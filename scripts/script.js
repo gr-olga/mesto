@@ -1,20 +1,33 @@
 const editProfilePopupElement = document.querySelector('#edit_profile_popup');
+const addCardPopupElement = document.querySelector('#add_card_popup');
+const formElement = document.querySelector('.popup__form');
+
 const openPopupElement = document.querySelector('.profile__edit-button');
 const openAddCardPopupElement = document.querySelector('.profile__add-card-button');
+
 const editPopupCloseButtonElement = editProfilePopupElement.querySelector('.popup__btn-close');
+const addPopupCloseButtonElement = addCardPopupElement.querySelector('.popup__btn-close');
+
 const profileNameElement = document.querySelector('.profile__name');
 const profileExtraElement = document.querySelector('.profile__extra');
+
 const inputNameElement = document.querySelector('.popup__input[name="profileName"]');
 const inputExtraElement = document.querySelector('.popup__input[name="extra"]');
-const formElement = document.querySelector('.popup__form[name = "profileInfo"]');
+
+const formProfile = document.querySelector('.popup__form[name = "profileInfo"]');
 const formCardElement = document.querySelector('.popup__form[name = "newPlace"]');
-const addCardPopupElement = document.querySelector('#add_card_popup');
-const addPopupCloseButtonElement = addCardPopupElement.querySelector('.popup__btn-close');
+
+
 const inputCardTitleElement = document.querySelector('.popup__input[name="cardTitle"]');
 const inputCardLinkElement = document.querySelector('.popup__input[name="link"]');
-const escapeButtonCode = 27;
-const buttonProfileElement = formElement.querySelector('.popup__save');
+
+const buttonProfileElement = formProfile.querySelector('.popup__save');
 const buttonCardElement = formCardElement.querySelector('.popup__save');
+
+const cardTemplate = document.querySelector('#card').content;
+const cardsGrid = document.querySelector('.cards-grid');
+const escapeButtonCode = 27;
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -50,7 +63,6 @@ initialCards.forEach((obj) => {
 
 
 function createCard(cardTitle, link) {
-    const cardTemplate = document.querySelector('#card').content;
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     addLikeToggle(cardElement);
     removeCard(cardElement);
@@ -61,14 +73,13 @@ function createCard(cardTitle, link) {
 }
 
 function renderCard(cardElement) {
-    const cardsGrid = document.querySelector('.cards-grid');
     cardsGrid.prepend(cardElement);
 }
 
 function addLikeToggle(cardElem) {
     const likeButtonElement = cardElem.querySelector('.card__like');
     likeButtonElement.addEventListener('click', (evt) => {
-        likeButtonElement.classList.add('card__like-active');
+        likeButtonElement.classList.toggle('card__like-active');
     });
 }
 
@@ -154,7 +165,7 @@ formCardElement.addEventListener('submit', formCardSubmitHandler);
 
 openPopupElement.addEventListener('click', openEditPopup);
 editPopupCloseButtonElement.addEventListener('click', () => closePopup(editProfilePopupElement));
-formElement.addEventListener('submit', formSubmitHandler);
+formProfile.addEventListener('submit', formSubmitHandler);
 
 const popupElementList = document.querySelectorAll('.popup')
 popupElementList.forEach((popup) => {
