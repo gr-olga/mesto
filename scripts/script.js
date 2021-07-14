@@ -28,6 +28,16 @@ const cardTemplate = document.querySelector('#card').content;
 const cardsGrid = document.querySelector('.cards-grid');
 const escapeButtonCode = 27;
 
+const config = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save',
+    inactiveButtonClass: 'popup__save_invalid',
+    inputErrorClass: 'popup__message-error_active',
+    errorClass: 'popup__input_invalid'
+}
+
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -112,7 +122,6 @@ closeImg.addEventListener('click', () => closePopup(itemPopup));
 
 function openPopup(el) {
     el.classList.add('popup_is-open');
-
 }
 
 function closePopup(el) {
@@ -121,8 +130,8 @@ function closePopup(el) {
 }
 
 function resetFormErrors(popupElement, inputAElement, inputBElement, buttonElement) {
-    hideInputError(popupElement, inputAElement)
-    hideInputError(popupElement, inputBElement)
+    hideInputError(popupElement, inputAElement, config)
+    hideInputError(popupElement, inputBElement, config)
     buttonElement.classList.add('popup__save_invalid');
     buttonElement.setAttribute('disable', true)
 }
