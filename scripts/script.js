@@ -27,6 +27,7 @@ const buttonCardElement = formCardElement.querySelector('.popup__save');
 const cardTemplate = document.querySelector('#card').content;
 const cardsGrid = document.querySelector('.cards-grid');
 const escapeButtonCode = 27;
+const popupElementList = document.querySelectorAll('.popup')
 
 const config = {
     formSelector: '.popup__form',
@@ -122,11 +123,16 @@ closeImg.addEventListener('click', () => closePopup(itemPopup));
 
 function openPopup(el) {
     el.classList.add('popup_is-open');
+    popupElementList.forEach((popup) => {
+        popup.addEventListener('mousedown', (evt) => closePopup(evt.target));
+        closePopupOnKeyCode(popup, escapeButtonCode)
+    })
 }
 
 function closePopup(el) {
     el.classList.remove('popup_is-open');
     el.removeEventListener('keydown', closeOnESC);
+
 }
 
 function resetFormErrors(popupElement, inputAElement, inputBElement, buttonElement) {
@@ -176,7 +182,7 @@ openPopupElement.addEventListener('click', openEditPopup);
 editPopupCloseButtonElement.addEventListener('click', () => closePopup(editProfilePopupElement));
 formProfile.addEventListener('submit', submitProfileForm);
 
-const popupElementList = document.querySelectorAll('.popup')
+
 popupElementList.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => closePopup(evt.target));
     closePopupOnKeyCode(popup, escapeButtonCode)
