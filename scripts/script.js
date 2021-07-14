@@ -1,6 +1,5 @@
 const editProfilePopupElement = document.querySelector('#edit_profile_popup');
 const addCardPopupElement = document.querySelector('#add_card_popup');
-const formElement = document.querySelector('.popup__form');
 
 const openPopupElement = document.querySelector('.profile__edit-button');
 const openAddCardPopupElement = document.querySelector('.profile__add-card-button');
@@ -123,15 +122,12 @@ closeImg.addEventListener('click', () => closePopup(itemPopup));
 
 function openPopup(el) {
     el.classList.add('popup_is-open');
-    popupElementList.forEach((popup) => {
-        popup.addEventListener('mousedown', (evt) => closePopup(evt.target));
-        closePopupOnKeyCode(popup, escapeButtonCode)
-    })
+    document.addEventListener('keydown', closeOnESC);
 }
 
 function closePopup(el) {
     el.classList.remove('popup_is-open');
-    el.removeEventListener('keydown', closeOnESC);
+    document.removeEventListener('keydown', closeOnESC);
 
 }
 
@@ -185,17 +181,13 @@ formProfile.addEventListener('submit', submitProfileForm);
 
 popupElementList.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => closePopup(evt.target));
-    closePopupOnKeyCode(popup, escapeButtonCode)
 })
 
-function closeOnESC(keyCode, popup) {
-    return (evt) => {
-        if (evt.keyCode === keyCode) closePopup(popup)
-    };
-}
-
-function closePopupOnKeyCode(popup, keyCode) {
-    document.addEventListener('keydown', closeOnESC(keyCode, popup))
+function closeOnESC(evt) {
+    if (evt.keyCode === escapeButtonCode) {
+        const openedPopup = document.querySelector('.popup_is-open');
+        closePopup(openedPopup);
+    }
 }
 
 

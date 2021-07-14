@@ -1,5 +1,3 @@
-const buttonElement = formElement.querySelector(config.submitButtonSelector);
-
 function toggleButtonState(inputList, buttonElement, config) {
     if (hasInputInvalid(inputList)) {
         buttonElement.classList.add(config.inactiveButtonClass);
@@ -42,6 +40,7 @@ function isValid(formElement, inputElement, config) {
 
 function setEventListener(formElement, config) {
     const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+    const buttonElement = formElement.querySelector(config.submitButtonSelector);
     inputList.forEach(inputElement => {
         inputElement.addEventListener('input', (event) => {
             isValid(formElement, inputElement, config)
