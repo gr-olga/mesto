@@ -134,7 +134,7 @@ const openEditPopup = function () {
     resetFormErrors(editProfilePopupElement, inputNameElement, inputExtraElement, buttonProfileElement);
 }
 
-function formSubmitHandler(evt) {
+function submitProfileForm(evt) {
     evt.preventDefault();
     const nameValue = inputNameElement.value
     const extraValue = inputExtraElement.value
@@ -150,7 +150,7 @@ const openAddCardPopup = function () {
     resetFormErrors(addCardPopupElement, inputCardTitleElement, inputCardLinkElement, buttonCardElement);
 }
 
-function formCardSubmitHandler(evt) {
+function submitCardForm(evt) {
     evt.preventDefault();
     const titleValue = inputCardTitleElement.value
     const linkValue = inputCardLinkElement.value
@@ -161,11 +161,11 @@ function formCardSubmitHandler(evt) {
 
 openAddCardPopupElement.addEventListener('click', openAddCardPopup);
 addPopupCloseButtonElement.addEventListener('click', () => closePopup(addCardPopupElement))
-formCardElement.addEventListener('submit', formCardSubmitHandler);
+formCardElement.addEventListener('submit', submitCardForm);
 
 openPopupElement.addEventListener('click', openEditPopup);
 editPopupCloseButtonElement.addEventListener('click', () => closePopup(editProfilePopupElement));
-formProfile.addEventListener('submit', formSubmitHandler);
+formProfile.addEventListener('submit', submitProfileForm);
 
 const popupElementList = document.querySelectorAll('.popup')
 popupElementList.forEach((popup) => {
