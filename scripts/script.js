@@ -123,8 +123,8 @@ function closePopup(el) {
 function resetFormErrors(popupElement, inputAElement, inputBElement, buttonElement) {
     hideInputError(popupElement, inputAElement)
     hideInputError(popupElement, inputBElement)
-    buttonElement.classList.remove('popup__save_invalid');
-    buttonElement.removeAttribute('disable')
+    buttonElement.classList.add('popup__save_invalid');
+    buttonElement.setAttribute('disable', true)
 }
 
 const openEditPopup = function () {
@@ -169,7 +169,7 @@ formProfile.addEventListener('submit', submitProfileForm);
 
 const popupElementList = document.querySelectorAll('.popup')
 popupElementList.forEach((popup) => {
-    popup.addEventListener('click', (evt) => closePopup(evt.target));
+    popup.addEventListener('mousedown', (evt) => closePopup(evt.target));
     closePopupOnKeyCode(popup, escapeButtonCode)
 })
 
