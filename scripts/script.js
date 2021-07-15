@@ -180,7 +180,11 @@ formProfile.addEventListener('submit', submitProfileForm);
 
 
 popupElementList.forEach((popup) => {
-    popup.addEventListener('mousedown', (evt) => closePopup(evt.target));
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup')) {
+            closePopup(evt.target)
+        }
+    });
 })
 
 function closeOnESC(evt) {
