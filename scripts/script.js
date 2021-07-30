@@ -66,9 +66,15 @@ const initialCards = [
 ];
 
 
-initialCards.forEach((obj) => {
-    const newCardElem = createCard(obj.name, obj.link);
-    renderCard(newCardElem);
+// initialCards.forEach((obj) => {
+//     const newCardElem = createCard(obj.name, obj.link);
+//     renderCard(newCardElem);
+// });
+
+initialCards.forEach((item) => {
+    const card = new Card(item.link, item.title);
+    const cardElement = card.generateCard();
+    renderCard(cardElement);
 });
 
 
@@ -92,6 +98,7 @@ class Card {
         this._element.querySelector('.card__title').textContent = cardTitle;
         return this._element
     }
+
 }
 
 
