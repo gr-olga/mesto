@@ -60,3 +60,4 @@ function enableValidation(config) {
 }
 
 enableValidation(config);
+

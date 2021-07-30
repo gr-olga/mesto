@@ -36,41 +36,19 @@ const config = {
     errorClass: 'popup__input_invalid'
 }
 
-
-
-function createCard(cardTitle, link) {
-    const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-    addLikeToggle(cardElement);
-    removeCard(cardElement);
-    createPopupCard(cardElement);
-    cardElement.querySelector('.card__image').src = link;
-    cardElement.querySelector('.card__title').textContent = cardTitle;
-    return cardElement
-}
-
-
-function removeCard(cardElem) {
-    const deleteCardElement = cardElem.querySelector('.card__remove');
-    deleteCardElement.addEventListener('click', (evt) => {
-        evt.preventDefault();
-        const cardItem = cardElem.closest('.card');
-        cardItem.remove();
-    });
-}
-
 const itemPopup = document.querySelector('#show_card')
 
-function createPopupCard(cardElem) {
-    const cardLinkElement = cardElem.querySelector('.card__image');
-    cardLinkElement.addEventListener('click', function (evt) {
-        evt.preventDefault();
-        const image = evt.target.src
-        const cardItem = cardLinkElement.closest('.card');
-        const titleText = cardItem.querySelector('.card__title');
-        openPopup(itemPopup);
-        itemPopup.querySelector('.popup__img').src = image;
-        itemPopup.querySelector('.popup__image-title').textContent = titleText.textContent;
-    });
+ function createPopupCard(cardElem) {
+     const cardLinkElement = cardElem.querySelector('.card__image');
+     cardLinkElement.addEventListener('click', function (evt) {
+         evt.preventDefault();
+         const image = evt.target.src
+         const cardItem = cardLinkElement.closest('.card');
+         const titleText = cardItem.querySelector('.card__title');
+         openPopup(itemPopup);
+         itemPopup.querySelector('.popup__img').src = image;
+         itemPopup.querySelector('.popup__image-title').textContent = titleText.textContent;
+     });
 }
 
 const closeImg = document.querySelector('.popup__card-btn-close');
@@ -149,5 +127,6 @@ function closeOnESC(evt) {
         closePopup(openedPopup);
     }
 }
+
 
 

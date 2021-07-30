@@ -33,11 +33,6 @@ function renderCard(cardElement) {
     cardsGrid.prepend(cardElement);
 }
 
-initialCards.forEach((item) => {
-    const card = new Card(item.link, item.title);
-    const cardElement = card.generateCard();
-    renderCard(cardElement);
-});
 
 
 class Card {
@@ -50,14 +45,13 @@ class Card {
     }
 
     _getTemplate() {
-        const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-        return cardElement
+        return cardTemplate.querySelector('.card').cloneNode(true)
     }
 
     generateCard() {
         this._element = this._getTemplate();
-        this._element.querySelector('.card__image').src = link;
-        this._element.querySelector('.card__title').textContent = cardTitle;
+        this._element.querySelector('.card__image').src = this._link;
+        this._element.querySelector('.card__title').textContent = this._title;
         this._addLikeToggle();
         this._removeCard();
         return this._element
@@ -77,8 +71,11 @@ class Card {
         });
     }
 
-    createPopupCard() {
-
-    }
 
 }
+
+initialCards.forEach((item) => {
+    const card = new Card(item.link, item.name);
+    const cardElement = card.generateCard();
+    renderCard(cardElement);
+});
