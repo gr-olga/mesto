@@ -48,10 +48,6 @@ function createCard(cardTitle, link) {
     return cardElement
 }
 
-function renderCard(cardElement) {
-    cardsGrid.prepend(cardElement);
-}
-
 
 function removeCard(cardElem) {
     const deleteCardElement = cardElem.querySelector('.card__remove');

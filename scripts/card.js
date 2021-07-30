@@ -25,8 +25,13 @@ const initialCards = [
     }
 ];
 
+
 const cardTemplate = document.querySelector('#card').content;
 const cardsGrid = document.querySelector('.cards-grid');
+
+function renderCard(cardElement) {
+    cardsGrid.prepend(cardElement);
+}
 
 initialCards.forEach((item) => {
     const card = new Card(item.link, item.title);
@@ -54,19 +59,22 @@ class Card {
         this._element.querySelector('.card__image').src = link;
         this._element.querySelector('.card__title').textContent = cardTitle;
         this._addLikeToggle();
+        this._removeCard();
         return this._element
     }
 
     _addLikeToggle() {
-        const likeButtonElement = cardElem.querySelector('.card__like');
-        likeButtonElement.addEventListener('click', (evt) => {
-            likeButtonElement.classList.toggle('card__like-active');
+        this._element.querySelector('.card__like').addEventListener('click', (evt) => {
+            this._element.classList.toggle('card__like-active');
         });
 
     }
 
     _removeCard() {
-
+        this._element.querySelector('.card__remove').addEventListener('click', (evt) => {
+            evt.preventDefault();
+            this._element.remove();
+        });
     }
 
     createPopupCard() {
