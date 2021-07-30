@@ -72,6 +72,29 @@ initialCards.forEach((obj) => {
 });
 
 
+class Card {
+    _link
+    _title
+
+    constructor(link, title) {
+        this._link = link;
+        this._title = title
+    }
+
+    _getTemplate() {
+        const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+        return cardElement;
+    }
+
+    generateCard() {
+        this._element = this._getTemplate();
+        this._element.querySelector('.card__image').src = link;
+        this._element.querySelector('.card__title').textContent = cardTitle;
+        return this._element
+    }
+}
+
+
 function createCard(cardTitle, link) {
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     addLikeToggle(cardElement);
