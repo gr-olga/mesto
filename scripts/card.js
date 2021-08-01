@@ -72,10 +72,14 @@ class Card {
     }
 
 
+
 }
 
 initialCards.forEach((item) => {
     const card = new Card(item.link, item.name);
     const cardElement = card.generateCard();
+    createPopupCard(cardElement);
     renderCard(cardElement);
 });
+
+
