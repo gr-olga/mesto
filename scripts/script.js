@@ -66,8 +66,6 @@ function closePopup(el) {
 }
 
 function resetFormErrors(popupElement, inputAElement, inputBElement, buttonElement) {
-    hideInputError(popupElement, inputAElement, config)
-    hideInputError(popupElement, inputBElement, config)
     buttonElement.classList.add('popup__save_invalid');
     buttonElement.setAttribute('disable', true)
 }
@@ -99,8 +97,9 @@ function submitCardForm(evt) {
     evt.preventDefault();
     const titleValue = inputCardTitleElement.value
     const linkValue = inputCardLinkElement.value
-    const newCardElem = createCard(titleValue, linkValue);
-    renderCard(newCardElem);
+    //TODO fix createCard
+    // const newCardElem = createCard(titleValue, linkValue);
+    // renderCard(newCardElem);
     closePopup(addCardPopupElement);
 }
 
