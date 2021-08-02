@@ -1,3 +1,6 @@
+import {FormValidator} from "./validate.js";
+import {Card} from "./card.js";
+
 const editProfilePopupElement = document.querySelector('#edit_profile_popup');
 const addCardPopupElement = document.querySelector('#add_card_popup');
 
@@ -33,7 +36,53 @@ const config = {
     errorClass: 'popup__input_invalid'
 }
 
+const cardValidationProfile = new FormValidator(config, formProfile);
+const cardValidationCardElement = new FormValidator(config, formCardElement);
+cardValidationProfile.enableValidation()
+cardValidationCardElement.enableValidation()
+
+
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+
+
 const itemPopup = document.querySelector('#show_card')
+const cardsGrid = document.querySelector('.cards-grid');
+
+function renderCard(cardElement) {
+    cardsGrid.prepend(cardElement);
+}
+
+initialCards.forEach((item) => {
+    const card = new Card(item.link, item.name);
+    const cardElement = card.generateCard();
+    createPopupCard(cardElement);
+    renderCard(cardElement);
+});
 
 function createPopupCard(cardElem) {
     const cardLinkElement = cardElem.querySelector('.card__image');
@@ -118,6 +167,4 @@ function closeOnESC(evt) {
         closePopup(openedPopup);
     }
 }
-
-
 

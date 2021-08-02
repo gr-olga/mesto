@@ -1,7 +1,6 @@
-class FormValidator {
+export class FormValidator {
 
     constructor(configSelectors, formElement) {
-        this._formSelector = configSelectors.formSelector;
         this._inputSelector = configSelectors.inputSelector;
         this._submitButtonSelector = configSelectors.submitButtonSelector;
         this._inactiveButtonClass = configSelectors.inactiveButtonClass;
@@ -59,7 +58,6 @@ class FormValidator {
                 this._toggleButtonState(inputList, buttonElement);
             })
         })
-        // this._toggleButtonState(inputList, buttonElement);
     }
 
     enableValidation() {
@@ -70,9 +68,3 @@ class FormValidator {
     }
 
 }
-
-const cardValidationProfile = new FormValidator(config, formProfile);
-const cardValidationCardElement = new FormValidator(config, formCardElement);
-cardValidationProfile.enableValidation()
-cardValidationCardElement.enableValidation()
-
