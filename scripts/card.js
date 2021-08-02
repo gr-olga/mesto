@@ -34,7 +34,6 @@ function renderCard(cardElement) {
 }
 
 
-
 class Card {
     _link
     _title
@@ -58,8 +57,9 @@ class Card {
     }
 
     _addLikeToggle() {
-        this._element.querySelector('.card__like').addEventListener('click', (evt) => {
-            this._element.classList.toggle('card__like-active');
+        const likeButtonElement = this._element.querySelector('.card__like');
+        likeButtonElement.addEventListener('click', (evt) => {
+            likeButtonElement.classList.toggle('card__like-active');
         });
 
     }
@@ -70,9 +70,6 @@ class Card {
             this._element.remove();
         });
     }
-
-
-
 }
 
 initialCards.forEach((item) => {

@@ -20,9 +20,6 @@ const formCardElement = document.querySelector('.popup__form[name = "newPlace"]'
 const inputCardTitleElement = document.querySelector('.popup__input[name="cardTitle"]');
 const inputCardLinkElement = document.querySelector('.popup__input[name="link"]');
 
-const buttonProfileElement = formProfile.querySelector('.popup__save');
-const buttonCardElement = formCardElement.querySelector('.popup__save');
-
 
 const escapeButtonCode = 27;
 const popupElementList = document.querySelectorAll('.popup')
@@ -38,17 +35,17 @@ const config = {
 
 const itemPopup = document.querySelector('#show_card')
 
- function createPopupCard(cardElem) {
-     const cardLinkElement = cardElem.querySelector('.card__image');
-     cardLinkElement.addEventListener('click', function (evt) {
-         evt.preventDefault();
-         const image = evt.target.src
-         const cardItem = cardLinkElement.closest('.card');
-         const titleText = cardItem.querySelector('.card__title');
-         openPopup(itemPopup);
-         itemPopup.querySelector('.popup__img').src = image;
-         itemPopup.querySelector('.popup__image-title').textContent = titleText.textContent;
-     });
+function createPopupCard(cardElem) {
+    const cardLinkElement = cardElem.querySelector('.card__image');
+    cardLinkElement.addEventListener('click', function (evt) {
+        evt.preventDefault();
+        const image = evt.target.src
+        const cardItem = cardLinkElement.closest('.card');
+        const titleText = cardItem.querySelector('.card__title');
+        openPopup(itemPopup);
+        itemPopup.querySelector('.popup__img').src = image;
+        itemPopup.querySelector('.popup__image-title').textContent = titleText.textContent;
+    });
 }
 
 const closeImg = document.querySelector('.popup__card-btn-close');
@@ -65,16 +62,11 @@ function closePopup(el) {
 
 }
 
-function resetFormErrors(popupElement, inputAElement, inputBElement, buttonElement) {
-    buttonElement.classList.add('popup__save_invalid');
-    buttonElement.setAttribute('disable', true)
-}
 
 const openEditPopup = function () {
     inputNameElement.value = profileNameElement.innerText;
     inputExtraElement.value = profileExtraElement.innerText;
     openPopup(editProfilePopupElement);
-    resetFormErrors(editProfilePopupElement, inputNameElement, inputExtraElement, buttonProfileElement);
 }
 
 function submitProfileForm(evt) {
@@ -90,16 +82,16 @@ const openAddCardPopup = function () {
     inputCardTitleElement.value = '';
     inputCardLinkElement.value = '';
     openPopup(addCardPopupElement);
-    resetFormErrors(addCardPopupElement, inputCardTitleElement, inputCardLinkElement, buttonCardElement);
 }
 
 function submitCardForm(evt) {
     evt.preventDefault();
     const titleValue = inputCardTitleElement.value
     const linkValue = inputCardLinkElement.value
-    //TODO fix createCard
-    // const newCardElem = createCard(titleValue, linkValue);
-    // renderCard(newCardElem);
+    const card = new Card(linkValue, titleValue);
+    const cardElement = card.generateCard();
+    createPopupCard(cardElement);
+    renderCard(cardElement);
     closePopup(addCardPopupElement);
 }
 
