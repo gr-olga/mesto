@@ -77,24 +77,22 @@ function renderCard(cardElement) {
     cardsGrid.prepend(cardElement);
 }
 
+function createCard(link, name) {
+    const card = new Card(link, name, '#card', createPopupCard);
+    return card.generateCard();
+}
+
 initialCards.forEach((item) => {
-    const card = new Card(item.link, item.name);
-    const cardElement = card.generateCard();
-    createPopupCard(cardElement);
+    const cardElement = createCard(item.link, item.name)
+    // createPopupCard(item.link, item.name);
     renderCard(cardElement);
 });
 
-function createPopupCard(cardElem) {
-    const cardLinkElement = cardElem.querySelector('.card__image');
-    cardLinkElement.addEventListener('click', function (evt) {
-        evt.preventDefault();
-        const image = evt.target.src
-        const cardItem = cardLinkElement.closest('.card');
-        const titleText = cardItem.querySelector('.card__title');
-        openPopup(itemPopup);
-        itemPopup.querySelector('.popup__img').src = image;
-        itemPopup.querySelector('.popup__image-title').textContent = titleText.textContent;
-    });
+function createPopupCard(link, title) {
+    openPopup(itemPopup);
+    itemPopup.querySelector('.popup__img').src = link;
+    itemPopup.querySelector('.popup__img').alt = title;
+    itemPopup.querySelector('.popup__image-title').textContent = title;
 }
 
 const closeImg = document.querySelector('.popup__card-btn-close');
@@ -137,9 +135,8 @@ function submitCardForm(evt) {
     evt.preventDefault();
     const titleValue = inputCardTitleElement.value
     const linkValue = inputCardLinkElement.value
-    const card = new Card(linkValue, titleValue);
-    const cardElement = card.generateCard();
-    createPopupCard(cardElement);
+    const cardElement = createCard(linkValue, titleValue, createPopupCard);
+    // createPopupCard(item.link, item.name);
     renderCard(cardElement);
     closePopup(addCardPopupElement);
 }

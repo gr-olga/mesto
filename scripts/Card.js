@@ -1,38 +1,52 @@
 export class Card {
     _link
     _title
+    _cardSelector
+    _createPopupCard
 
-    constructor(link, title) {
+    constructor(link, title, cardSelector, createPopupCard) {
         this._link = link;
-        this._title = title
+        this._title = title;
+        this._cardSelector = cardSelector;
+        this._createPopupCard = createPopupCard
     }
 
     _getTemplate() {
-        const cardTemplate = document.querySelector('#card').content;
-        return cardTemplate.querySelector('.card').cloneNode(true)
+        this._cardTemplate = document.querySelector(this._cardSelector).content;
+        return this._cardTemplate.querySelector('.card').cloneNode(true)
     }
 
     generateCard() {
         this._element = this._getTemplate();
-        this._element.querySelector('.card__image').src = this._link;
+        const cardImageElement = this._element.querySelector('.card__image');
+        cardImageElement.src = this._link;
+        cardImageElement.alt = this._title;
         this._element.querySelector('.card__title').textContent = this._title;
         this._addLikeToggle();
-        this._removeCard();
+        this._addRemoveListener();
+        this._addPopupListener();
         return this._element
     }
 
     _addLikeToggle() {
         const likeButtonElement = this._element.querySelector('.card__like');
-        likeButtonElement.addEventListener('click', (evt) => {
+        likeButtonElement.addEventListener('click', () => {
             likeButtonElement.classList.toggle('card__like-active');
         });
-
     }
 
-    _removeCard() {
+    _addPopupListener() {
+        const cardImage = this._element.querySelector('.card__image');
+        cardImage.addEventListener('click', (evt) => {
+            this._createPopupCard(this._link, this._title);
+        });
+    }
+
+    _addRemoveListener() {
         this._element.querySelector('.card__remove').addEventListener('click', (evt) => {
             evt.preventDefault();
             this._element.remove();
+            this._element = null;
         });
     }
 }
