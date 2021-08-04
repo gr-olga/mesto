@@ -106,7 +106,7 @@ function openPopup(el) {
 function closePopup(el) {
     el.classList.remove('popup_is-open');
     document.removeEventListener('keydown', closeOnESC);
-
+    el.closest('.popup__form').reset();
 }
 
 
@@ -129,6 +129,7 @@ const openAddCardPopup = function () {
     inputCardTitleElement.value = '';
     inputCardLinkElement.value = '';
     openPopup(addCardPopupElement);
+    formCardElement.reset();
 }
 
 function submitCardForm(evt) {
@@ -139,6 +140,8 @@ function submitCardForm(evt) {
     // createPopupCard(item.link, item.name);
     renderCard(cardElement);
     closePopup(addCardPopupElement);
+    formCardElement.reset();
+
 }
 
 openAddCardPopupElement.addEventListener('click', openAddCardPopup);
