@@ -106,9 +106,10 @@ function openPopup(el) {
 function closePopup(el) {
     el.classList.remove('popup_is-open');
     document.removeEventListener('keydown', closeOnESC);
-    el.closest('.popup__form').reset();
+    el.querySelector('.popup__form').reset();
+    cardValidationProfile.resetValidation();
+    cardValidationCardElement.resetValidation();
 }
-
 
 const openEditPopup = function () {
     inputNameElement.value = profileNameElement.innerText;
