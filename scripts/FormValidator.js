@@ -9,7 +9,7 @@ export class FormValidator {
         this._formElement = formElement;
     }
 
-    _isValid(formElement, inputElement) {
+    _isValid(inputElement) {
         const errorMessage = inputElement.validationMessage
 
         if (!inputElement.validity.valid) {
@@ -42,19 +42,19 @@ export class FormValidator {
     _toggleButtonState(inputList, buttonElement) {
         if (this._hasInputInvalid(inputList)) {
             buttonElement.classList.add(this._inactiveButtonClass);
-            buttonElement.setAttribute('disable', true)
+            buttonElement.setAttribute('disabled', true)
         } else {
             buttonElement.classList.remove(this._inactiveButtonClass);
-            buttonElement.removeAttribute('disable')
+            buttonElement.removeAttribute('disabled')
         }
     }
 
-    _setEventListener(formElement) {
-        const inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
-        const buttonElement = formElement.querySelector(this._submitButtonSelector);
+    _setEventListener() {
+        const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+        const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
         inputList.forEach(inputElement => {
             inputElement.addEventListener('input', (event) => {
-                this._isValid(formElement, inputElement);
+                this._isValid(inputElement);
                 this._toggleButtonState(inputList, buttonElement);
             })
         })
