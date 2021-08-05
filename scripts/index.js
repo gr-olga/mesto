@@ -84,7 +84,6 @@ function createCard(link, name) {
 
 initialCards.forEach((item) => {
     const cardElement = createCard(item.link, item.name)
-    // createPopupCard(item.link, item.name);
     renderCard(cardElement);
 });
 
@@ -106,7 +105,6 @@ function openPopup(el) {
 function closePopup(el) {
     el.classList.remove('popup_is-open');
     document.removeEventListener('keydown', closeOnESC);
-    el.querySelector('.popup__form').reset();
 }
 
 const openEditPopup = function () {
@@ -137,7 +135,6 @@ function submitCardForm(evt) {
     const titleValue = inputCardTitleElement.value
     const linkValue = inputCardLinkElement.value
     const cardElement = createCard(linkValue, titleValue, createPopupCard);
-    // createPopupCard(item.link, item.name);
     renderCard(cardElement);
     closePopup(addCardPopupElement);
     formCardElement.reset();
