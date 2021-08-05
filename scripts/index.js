@@ -107,14 +107,13 @@ function closePopup(el) {
     el.classList.remove('popup_is-open');
     document.removeEventListener('keydown', closeOnESC);
     el.querySelector('.popup__form').reset();
-    cardValidationProfile.resetValidation();
-    cardValidationCardElement.resetValidation();
 }
 
 const openEditPopup = function () {
     inputNameElement.value = profileNameElement.innerText;
     inputExtraElement.value = profileExtraElement.innerText;
     openPopup(editProfilePopupElement);
+    cardValidationProfile.resetValidation();
 }
 
 function submitProfileForm(evt) {
@@ -127,10 +126,10 @@ function submitProfileForm(evt) {
 }
 
 const openAddCardPopup = function () {
-    inputCardTitleElement.value = '';
-    inputCardLinkElement.value = '';
     openPopup(addCardPopupElement);
     formCardElement.reset();
+    cardValidationCardElement.resetValidation();
+    cardValidationCardElement.toggleButtonState();
 }
 
 function submitCardForm(evt) {
@@ -142,7 +141,6 @@ function submitCardForm(evt) {
     renderCard(cardElement);
     closePopup(addCardPopupElement);
     formCardElement.reset();
-
 }
 
 openAddCardPopupElement.addEventListener('click', openAddCardPopup);
