@@ -1,5 +1,6 @@
-import {FormValidator} from "./FormValidator.js";
-import {Card} from "./Card.js";
+import '../styles/index.css';
+import {FormValidator} from "../scripts/FormValidator.js";
+import {Card} from "../scripts/Card.js";
 
 const editProfilePopupElement = document.querySelector('#edit_profile_popup');
 const addCardPopupElement = document.querySelector('#add_card_popup');
@@ -163,4 +164,3 @@ function closeOnESC(evt) {
         closePopup(openedPopup);
     }
 }
-

@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Gr-Olga">
     <meta name="description" content="third project for Yandex Practicum.">
-    <link rel="stylesheet" href="pages/index.css">
+<!--    <link rel="stylesheet" href="../styles/index.css">-->
     <title>Mesto</title>
 </head>
 <body class="body">
 <div class="page">
     <header class="header">
-        <img src="images/logo.svg" class="header__logo" alt="логотип">
+        <img src="<%=require('../images/logo.svg')%>" class="header__logo" alt="Логотип">
+        <!--        <img src="../images/logo.svg" class="header__logo" alt="логотип">-->
     </header>
     <main class="content">
         <section class="profile">
-            <img src="images/avatar.png" class="profile__avatar" alt="аватар">
+            <img src="<%=require('../images/avatar.png')%>" class="profile__avatar" alt="аватар">
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <button class="profile__edit-button" type="button"></button>
@@ -26,7 +27,8 @@
         <section class="cards-grid">
             <template id="card">
                 <div class="card">
-                    <button type="button" class="card__remove"><img src="images/bin.svg" alt="bin"></button>
+                    <button type="button" class="card__remove"><img src="<%=require('../images/bin.svg')%>" alt="bin">
+                    </button>
                     <img class="card__image" alt="фото">
                     <div class="card__info">
                         <h2 class="card__title"></h2>
@@ -87,6 +89,6 @@
         </div>
     </div>
 </section>
-<script src="scripts/index.js" type="module"></script>
+<script src="index.js" type="module"></script>
 </body>
 </html>
