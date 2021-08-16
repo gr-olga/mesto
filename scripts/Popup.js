@@ -1,8 +1,9 @@
 export class Popup {
     constructor(popupSelector) {
         this._popupSelector = popupSelector;
-        this._closeButton = document.querySelector('.popup__btn-close');
-        this._popupElement = document.querySelector(this._popupSelector)
+        this._popupElement = document.querySelector(this._popupSelector);
+        this._closeButton = this._popupElement.querySelector('.popup__btn-close');
+        this._popupElementList = document.querySelectorAll('.popup');
     }
 
     open() {
@@ -18,14 +19,14 @@ export class Popup {
     _handleEscClose(evt) {
         const escapeButtonCode = 27;
         if (evt.keyCode === escapeButtonCode) {
-            const openedPopup = document.querySelector('.popup_is-open');
-            this.close(openedPopup)
+            this.close();
         }
     }
 
-    setEventListeners(popupElementList) {
-        this._closeButton.addEventListener('click', this.close);
-        popupElementList.forEach((popup) => {
+    setEventListeners() {
+        console.log(this._closeButton);
+        this._closeButton.addEventListener('click', () => this.close());
+        this._popupElementList.forEach((popup) => {
             popup.addEventListener('mousedown', (evt) => {
                 if (evt.target.classList.contains('popup')) {
                     this.close(evt.target)

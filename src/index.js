@@ -133,7 +133,8 @@ function openEditPopupWithForm() {
 function openCardPopupWithForm() {
     const popupWithForm = new PopupWithForm('#add_card_popup', () => console.log('xuinya'))
     popupWithForm.open();
-    addPopupCloseButtonElement.addEventListener('click', () => popupWithForm.close());
+    popupWithForm.setEventListeners();
+    // addPopupCloseButtonElement.addEventListener('click', () => popupWithForm.close());
 }
 
 openAddCardPopupElement.addEventListener('click', openEditPopupWithForm);
