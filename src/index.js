@@ -1,7 +1,9 @@
 import '../styles/index.css';
 import {FormValidator} from "../scripts/FormValidator.js";
 import {Card} from "../scripts/Card.js";
-import {addItem, renderAllElements, Section} from "../scripts/Section.js";
+import {Section} from "../scripts/Section.js";
+import {PopupWithImage} from "../scripts/PopupWithImage";
+import {Popup} from "../scripts/Popup";
 
 const editProfilePopupElement = document.querySelector('#edit_profile_popup');
 const addCardPopupElement = document.querySelector('#add_card_popup');
@@ -80,7 +82,7 @@ const cardsGrid = document.querySelector(cardGridSelector);
 // }
 
 function createCard(link, name) {
-    const card = new Card(link, name, '#card', createPopupCard);
+    const card = new Card(link, name, '#card', () => console.log('hui znaet'), () => console.log('clicked!!!'));
     return card.generateCard();
 }
 
@@ -94,15 +96,20 @@ const renderedElements = section.renderAllElements();
 renderedElements.forEach((item) => section.addItem(item));
 
 
-function createPopupCard(link, title) {
-    openPopup(itemPopup);
-    itemPopup.querySelector('.popup__img').src = link;
-    itemPopup.querySelector('.popup__img').alt = title;
-    itemPopup.querySelector('.popup__image-title').textContent = title;
+// function createPopupCard(link, title) {
+//     openPopup(itemPopup);
+//     itemPopup.querySelector('.popup__img').src = link;
+//     itemPopup.querySelector('.popup__img').alt = title;
+//     itemPopup.querySelector('.popup__image-title').textContent = title;
+// }
+function PopupImage(link, title) {
+    const popupCardImage = new PopupWithImage('.popup_card', link, title);
+    console.log(popupCardImage)
+    popupCardImage.open();
 }
 
 const closeImg = document.querySelector('.popup__card-btn-close');
-closeImg.addEventListener('click', () => closePopup(itemPopup));
+closeImg.addEventListener('click', () => close());
 
 // function openPopup(el) {
 //     el.classList.add('popup_is-open');

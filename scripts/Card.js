@@ -4,11 +4,12 @@ export class Card {
     _cardSelector
     _createPopupCard
 
-    constructor(link, title, cardSelector, createPopupCard) {
+    constructor(link, title, cardSelector, createPopupCard, handleCardClick) {
         this._link = link;
         this._title = title;
         this._cardSelector = cardSelector;
-        this._createPopupCard = createPopupCard
+        this._createPopupCard = createPopupCard;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -38,6 +39,7 @@ export class Card {
     _addPopupListener() {
         const cardImage = this._element.querySelector('.card__image');
         cardImage.addEventListener('click', (evt) => {
+            this._handleCardClick()
             this._createPopupCard(this._link, this._title);
         });
     }
