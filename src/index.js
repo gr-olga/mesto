@@ -124,17 +124,24 @@ function submitCardForm(evt) {
     formCardElement.reset();
 }
 
-function openPopupWithForm() {
-    const popupWithForm = new PopupWithForm('#edit_profile_popup', () => console.log(xuinya))
+function openEditPopupWithForm() {
+    const popupWithForm = new PopupWithForm('#edit_profile_popup', () => console.log('xuinya'))
     popupWithForm.open();
+    editPopupCloseButtonElement.addEventListener('click', () => popupWithForm.close());
 }
 
-openAddCardPopupElement.addEventListener('click', openPopupWithForm);
-addPopupCloseButtonElement.addEventListener('click', () => closePopup(addCardPopupElement))
-formCardElement.addEventListener('submit', submitCardForm);
+function openCardPopupWithForm() {
+    const popupWithForm = new PopupWithForm('#add_card_popup', () => console.log('xuinya'))
+    popupWithForm.open();
+    addPopupCloseButtonElement.addEventListener('click', () => popupWithForm.close());
+}
 
-openPopupElement.addEventListener('click', openPopupWithForm);
-editPopupCloseButtonElement.addEventListener('click', () => closePopup(editProfilePopupElement));
-formProfile.addEventListener('submit', submitProfileForm);
+openAddCardPopupElement.addEventListener('click', openEditPopupWithForm);
+// addPopupCloseButtonElement.addEventListener('click', () => closePopup(addCardPopupElement))
+// formCardElement.addEventListener('submit', submitCardForm);
+
+openPopupElement.addEventListener('click', openCardPopupWithForm);
+// editPopupCloseButtonElement.addEventListener('click', () => closePopup(editProfilePopupElement));
+// formProfile.addEventListener('submit', submitProfileForm);
 
 
