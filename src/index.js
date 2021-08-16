@@ -3,6 +3,8 @@ import {FormValidator} from "../scripts/FormValidator.js";
 import {Card} from "../scripts/Card.js";
 import {Section} from "../scripts/Section.js";
 import {PopupWithImage} from "../scripts/PopupWithImage";
+import {PopupWithForm} from "../scripts/PopupWithForm";
+
 
 const editProfilePopupElement = document.querySelector('#edit_profile_popup');
 const addCardPopupElement = document.querySelector('#add_card_popup');
@@ -26,9 +28,6 @@ const formCardElement = document.querySelector('.popup__form[name = "newPlace"]'
 const inputCardTitleElement = document.querySelector('.popup__input[name="cardTitle"]');
 const inputCardLinkElement = document.querySelector('.popup__input[name="link"]');
 
-
-const escapeButtonCode = 27;
-const popupElementList = document.querySelectorAll('.popup')
 
 const config = {
     formSelector: '.popup__form',
@@ -73,13 +72,9 @@ const initialCards = [
 ];
 
 const cardGridSelector = '.cards-grid'
-const itemPopup = document.querySelector('#show_card')
-const cardsGrid = document.querySelector(cardGridSelector);
-
-
 
 function createCard(link, name) {
-    const card = new Card(link, name, '#card', () => console.log('hui znaet'), handleCardClick);
+    const card = new Card(link, name, '#card', handleCardClick);
     return card.generateCard();
 }
 
@@ -129,26 +124,17 @@ function submitCardForm(evt) {
     formCardElement.reset();
 }
 
-openAddCardPopupElement.addEventListener('click', openAddCardPopup);
+function openPopupWithForm() {
+    const popupWithForm = new PopupWithForm('#edit_profile_popup', () => console.log(xuinya))
+    popupWithForm.open();
+}
+
+openAddCardPopupElement.addEventListener('click', openPopupWithForm);
 addPopupCloseButtonElement.addEventListener('click', () => closePopup(addCardPopupElement))
 formCardElement.addEventListener('submit', submitCardForm);
 
-openPopupElement.addEventListener('click', openEditPopup);
+openPopupElement.addEventListener('click', openPopupWithForm);
 editPopupCloseButtonElement.addEventListener('click', () => closePopup(editProfilePopupElement));
 formProfile.addEventListener('submit', submitProfileForm);
 
-//
-// popupElementList.forEach((popup) => {
-//     popup.addEventListener('mousedown', (evt) => {
-//         if (evt.target.classList.contains('popup')) {
-//             closePopup(evt.target)
-//         }
-//     });
-// })
-//
-// function closeOnESC(evt) {
-//     if (evt.keyCode === escapeButtonCode) {
-//         const openedPopup = document.querySelector('.popup_is-open');
-//         closePopup(openedPopup);
-//     }
-// }
+

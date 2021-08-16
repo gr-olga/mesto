@@ -2,13 +2,11 @@ export class Card {
     _link
     _title
     _cardSelector
-    _createPopupCard
 
-    constructor(link, title, cardSelector, createPopupCard, handleCardClick) {
+    constructor(link, title, cardSelector, handleCardClick) {
         this._link = link;
         this._title = title;
         this._cardSelector = cardSelector;
-        this._createPopupCard = createPopupCard;
         this._handleCardClick = handleCardClick;
     }
 
