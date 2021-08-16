@@ -127,14 +127,15 @@ function submitCardForm(evt) {
 function openEditPopupWithForm() {
     const popupWithForm = new PopupWithForm('#edit_profile_popup', () => console.log('xuinya'))
     popupWithForm.open();
-    editPopupCloseButtonElement.addEventListener('click', () => popupWithForm.close());
+    popupWithForm.setEventListeners();
+
 }
 
 function openCardPopupWithForm() {
     const popupWithForm = new PopupWithForm('#add_card_popup', () => console.log('xuinya'))
     popupWithForm.open();
     popupWithForm.setEventListeners();
-    // addPopupCloseButtonElement.addEventListener('click', () => popupWithForm.close());
+
 }
 
 openAddCardPopupElement.addEventListener('click', openEditPopupWithForm);
