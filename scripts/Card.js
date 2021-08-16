@@ -39,8 +39,7 @@ export class Card {
     _addPopupListener() {
         const cardImage = this._element.querySelector('.card__image');
         cardImage.addEventListener('click', (evt) => {
-            this._handleCardClick()
-            this._createPopupCard(this._link, this._title);
+            this._handleCardClick(this._link, this._title)
         });
     }
 

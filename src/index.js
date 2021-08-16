@@ -3,7 +3,6 @@ import {FormValidator} from "../scripts/FormValidator.js";
 import {Card} from "../scripts/Card.js";
 import {Section} from "../scripts/Section.js";
 import {PopupWithImage} from "../scripts/PopupWithImage";
-import {Popup} from "../scripts/Popup";
 
 const editProfilePopupElement = document.querySelector('#edit_profile_popup');
 const addCardPopupElement = document.querySelector('#add_card_popup');
@@ -77,49 +76,25 @@ const cardGridSelector = '.cards-grid'
 const itemPopup = document.querySelector('#show_card')
 const cardsGrid = document.querySelector(cardGridSelector);
 
-// function renderCard(cardElement) {
-//     cardsGrid.prepend(cardElement);
-// }
+
 
 function createCard(link, name) {
-    const card = new Card(link, name, '#card', () => console.log('hui znaet'), () => console.log('clicked!!!'));
+    const card = new Card(link, name, '#card', () => console.log('hui znaet'), handleCardClick);
     return card.generateCard();
 }
 
-// initialCards.forEach((item) => {
-// const cardElement = createCard(item.link, item.name)
-//     renderCard(cardElement);
-// });
 
 const section = new Section({items: initialCards, renderer: createCard}, cardGridSelector);
 const renderedElements = section.renderAllElements();
 renderedElements.forEach((item) => section.addItem(item));
 
-
-// function createPopupCard(link, title) {
-//     openPopup(itemPopup);
-//     itemPopup.querySelector('.popup__img').src = link;
-//     itemPopup.querySelector('.popup__img').alt = title;
-//     itemPopup.querySelector('.popup__image-title').textContent = title;
-// }
-function PopupImage(link, title) {
-    const popupCardImage = new PopupWithImage('.popup_card', link, title);
-    console.log(popupCardImage)
-    popupCardImage.open();
+function handleCardClick(link, title) {
+    const popupWithImage = new PopupWithImage('.popup_card', link, title);
+    popupWithImage.open();
+    const closeImg = document.querySelector('.popup__card-btn-close');
+    closeImg.addEventListener('click', () => popupWithImage.close());
 }
 
-const closeImg = document.querySelector('.popup__card-btn-close');
-closeImg.addEventListener('click', () => close());
-
-// function openPopup(el) {
-//     el.classList.add('popup_is-open');
-//     document.addEventListener('keydown', closeOnESC);
-// }
-//
-// function closePopup(el) {
-//     el.classList.remove('popup_is-open');
-//     document.removeEventListener('keydown', closeOnESC);
-// }
 
 const openEditPopup = function () {
     inputNameElement.value = profileNameElement.innerText;

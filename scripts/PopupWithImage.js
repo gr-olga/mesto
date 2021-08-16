@@ -14,6 +14,4 @@ export class PopupWithImage extends Popup {
         this._image.alt = this._title;
         document.querySelector('.popup__image-title').textContent = this._title;
     }
-
-
 }
