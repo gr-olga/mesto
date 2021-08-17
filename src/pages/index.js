@@ -63,18 +63,21 @@ function submitCardForm({cardTitle, link}) {
     popupCardWithForm.close();
 }
 
+const userInfo = new UserInfo({
+    nameSelector: '.profile__name',
+    infoSelector: '.profile__extra',
+    nameInputSelector: '.popup__input[name="profileName"]',
+    infoInputSelector: '.popup__input[name="extra"]'
+})
 const popupProfileWithForm = new PopupWithForm('#edit_profile_popup', (inputData) => submitProfileForm(inputData))
 openPopupElement.addEventListener('click', () => {
+    const info = userInfo.getUserInfo();
+    userInfo.updateFormUserInfo(info);
     popupProfileWithForm.open();
     cardValidationProfile.resetValidation();
 });
 popupProfileWithForm.setEventListeners();
 
-
-const userInfo = new UserInfo({
-    nameSelector: '.profile__name',
-    infoSelector: '.profile__extra'
-})
 
 function submitProfileForm(inputData) {
     userInfo.setUserInfo(inputData);
