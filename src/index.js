@@ -49,7 +49,10 @@ function handleCardClick(link, title) {
 }
 
 const popupCardWithForm = new PopupWithForm('#add_card_popup', (evt) => submitCardForm(evt))
-openAddCardPopupElement.addEventListener('click', openEditPopupWithForm);
+openAddCardPopupElement.addEventListener('click', () => {
+    openEditPopupWithForm();
+    cardValidationCardElement.resetValidation();
+});
 
 function openEditPopupWithForm() {
     popupCardWithForm.open();
@@ -66,7 +69,10 @@ function submitCardForm(evt) {
 }
 
 const popupProfileWithForm = new PopupWithForm('#edit_profile_popup', (evt) => submitProfileForm(evt))
-openPopupElement.addEventListener('click', openCardPopupWithForm);
+openPopupElement.addEventListener('click', () => {
+    openCardPopupWithForm();
+    cardValidationProfile.resetValidation();
+});
 
 function openCardPopupWithForm() {
     popupProfileWithForm.open();
