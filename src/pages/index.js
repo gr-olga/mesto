@@ -66,14 +66,11 @@ function submitCardForm() {
 
 const popupProfileWithForm = new PopupWithForm('#edit_profile_popup', () => submitProfileForm())
 openPopupElement.addEventListener('click', () => {
-    openCardPopupWithForm();
+    popupProfileWithForm.open();
     cardValidationProfile.resetValidation();
 });
+popupProfileWithForm.setEventListeners();
 
-function openCardPopupWithForm() {
-    popupProfileWithForm.open();
-    popupProfileWithForm.setEventListeners();
-}
 
 const userInfo = new UserInfo({
     nameSelector: '.popup__input[name="profileName"]',
