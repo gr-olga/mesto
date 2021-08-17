@@ -6,6 +6,7 @@ import {PopupWithImage} from "../scripts/PopupWithImage";
 import {PopupWithForm} from "../scripts/PopupWithForm";
 import {UserInfo} from "../scripts/UserInfo";
 import {Popup} from "../scripts/Popup";
+import {assertConfigApplicableTest} from "@babel/core/lib/config/validation/option-assertions";
 //
 // const editProfilePopupElement = document.querySelector('#edit_profile_popup');
 // const addCardPopupElement = document.querySelector('#add_card_popup');
@@ -112,13 +113,15 @@ function openCardPopupWithForm() {
     popupProfileWithForm.setEventListeners();
 }
 
+const userInfo = new UserInfo({
+    nameSelector: '.popup__input[name="profileName"]',
+    infoSelector: '.popup__input[name="extra"]'
+})
+
 function submitProfileForm(evt) {
     evt.preventDefault();
-    // const nameValue = inputNameElement.value
-    // const extraValue = inputExtraElement.value
-    // formProfile.setUserInfo();
-    profileNameElement.textContent = inputNameElement.value;
-    profileExtraElement.textContent = inputExtraElement.value;
+    const info = userInfo.getUserInfo();
+    userInfo.setUserInfo(info);
     popupProfileWithForm.close();
 }
 

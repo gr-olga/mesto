@@ -1,18 +1,24 @@
 export class UserInfo {
-    constructor(info) {
-        this._name = info.name;
-        this._profile = info.profile;
+    constructor({nameSelector, infoSelector}) {
+        this._nameSelector = nameSelector;
+        this._infoSelector = infoSelector;
+        this._nameElement = document.querySelector(this._nameSelector);
+        this._infoElement = document.querySelector(this._infoSelector);
+        this._profileNameElement = document.querySelector('.profile__name');
+        this._profileExtraElement = document.querySelector('.profile__extra');
 
     }
 
     getUserInfo() {
-        const nameValue = this._name.value;
-        const extraValue = this._profile.value
+        return {
+            name: this._nameElement.value,
+            info: this._infoElement.value
+        }
     }
 
-    setUserInfo(el) {
-        el.textContent = this._name.value;
-        el.textContent = this._profile.value
+    setUserInfo({name, info}) {
+        this._profileNameElement.textContent = name;
+        this._profileExtraElement.textContent = info;
     }
 
 }
