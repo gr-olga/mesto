@@ -5,24 +5,16 @@ import {Section} from "./scripts/Section.js";
 import {PopupWithImage} from "./scripts/PopupWithImage";
 import {PopupWithForm} from "./scripts/PopupWithForm";
 import {UserInfo} from "./scripts/UserInfo";
-
+import {initialCards} from "./scripts/data";
 
 const openPopupElement = document.querySelector('.profile__edit-button');
 const openAddCardPopupElement = document.querySelector('.profile__add-card-button');
 
-const profileNameElement = document.querySelector('.profile__name');
-const profileExtraElement = document.querySelector('.profile__extra');
-
-const inputNameElement = document.querySelector('.popup__input[name="profileName"]');
-const inputExtraElement = document.querySelector('.popup__input[name="extra"]');
-
 const formProfile = document.querySelector('.popup__form[name = "profileInfo"]');
 const formCardElement = document.querySelector('.popup__form[name = "newPlace"]');
 
-
 const inputCardTitleElement = document.querySelector('.popup__input[name="cardTitle"]');
 const inputCardLinkElement = document.querySelector('.popup__input[name="link"]');
-
 
 const config = {
     formSelector: '.popup__form',
@@ -37,34 +29,6 @@ const cardValidationProfile = new FormValidator(config, formProfile);
 const cardValidationCardElement = new FormValidator(config, formCardElement);
 cardValidationProfile.enableValidation()
 cardValidationCardElement.enableValidation()
-
-
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
 
 const cardGridSelector = '.cards-grid'
 
