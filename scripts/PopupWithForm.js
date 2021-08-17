@@ -20,7 +20,7 @@ import {Popup} from "./Popup";
 
     setEventListeners() {
         super.setEventListeners();
-        this._formElement.addEventListener('submit', () => this._submitFormFn())
+        this._formElement.addEventListener('submit', (evt) => this._submitFormFn(evt))
     }
 
     close() {

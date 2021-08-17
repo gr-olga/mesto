@@ -6,15 +6,12 @@ import {PopupWithImage} from "../scripts/PopupWithImage";
 import {PopupWithForm} from "../scripts/PopupWithForm";
 import {UserInfo} from "../scripts/UserInfo";
 import {Popup} from "../scripts/Popup";
-
-const editProfilePopupElement = document.querySelector('#edit_profile_popup');
-const addCardPopupElement = document.querySelector('#add_card_popup');
+//
+// const editProfilePopupElement = document.querySelector('#edit_profile_popup');
+// const addCardPopupElement = document.querySelector('#add_card_popup');
 
 const openPopupElement = document.querySelector('.profile__edit-button');
 const openAddCardPopupElement = document.querySelector('.profile__add-card-button');
-
-const editPopupCloseButtonElement = editProfilePopupElement.querySelector('.popup__btn-close');
-const addPopupCloseButtonElement = addCardPopupElement.querySelector('.popup__btn-close');
 
 const profileNameElement = document.querySelector('.profile__name');
 const profileExtraElement = document.querySelector('.profile__extra');
@@ -73,64 +70,62 @@ const initialCards = [
 ];
 
 const cardGridSelector = '.cards-grid'
-const grid = document.querySelector(cardGridSelector);
 
 function createCard(link, name) {
     const card = new Card(link, name, '#card', handleCardClick);
     return card.generateCard();
 }
 
-
 const section = new Section({items: initialCards, renderer: createCard}, cardGridSelector);
 const renderedElements = section.renderAllElements();
 renderedElements.forEach((item) => section.addItem(item));
 
-const popupCardWithForm = new PopupWithForm('#add_card_popup', () => submitCardForm())
-const popupProfileWithForm = new PopupWithForm('#edit_profile_popup', (evt) => submitProfileForm(evt))
 
 function handleCardClick(link, title) {
     const popupWithImage = new PopupWithImage('.popup_card', link, title);
     popupWithImage.open();
-    const closeImg = document.querySelector('.popup__card-btn-close');
-    closeImg.addEventListener('click', () => popupWithImage.close());
+    popupWithImage.setEventListeners();
 }
 
-function submitProfileForm() {
-    // evt.preventDefault();
-    // const nameValue = inputNameElement.value
-    // const extraValue = inputExtraElement.value
-    // formProfile.setUserInfo();
-    profileNameElement.textContent = inputNameElement.value;
-    profileExtraElement.textContent = inputExtraElement.value;
-    console.log('eRH');
-    popupProfileWithForm.close();
+const popupCardWithForm = new PopupWithForm('#add_card_popup', (evt) => submitCardForm(evt))
+openAddCardPopupElement.addEventListener('click', openEditPopupWithForm);
+
+function openEditPopupWithForm() {
+    popupCardWithForm.open();
+    popupCardWithForm.setEventListeners();
 }
 
 function submitCardForm(evt) {
-    // evt.preventDefault();
+    evt.preventDefault();
     const titleValue = inputCardTitleElement.value
     const linkValue = inputCardLinkElement.value
     const cardElement = createCard(linkValue, titleValue, handleCardClick);
     section.addItem(cardElement);
     popupCardWithForm.close();
-
 }
 
-function openEditPopupWithForm() {
-    popupCardWithForm.open();
-    popupCardWithForm.setEventListeners();
-
-}
+const popupProfileWithForm = new PopupWithForm('#edit_profile_popup', (evt) => submitProfileForm(evt))
+openPopupElement.addEventListener('click', openCardPopupWithForm);
 
 function openCardPopupWithForm() {
     popupProfileWithForm.open();
     popupProfileWithForm.setEventListeners();
 }
 
-openAddCardPopupElement.addEventListener('click', openEditPopupWithForm);
-// formCardElement.addEventListener('submit', submitCardForm);
+function submitProfileForm(evt) {
+    evt.preventDefault();
+    // const nameValue = inputNameElement.value
+    // const extraValue = inputExtraElement.value
+    // formProfile.setUserInfo();
+    profileNameElement.textContent = inputNameElement.value;
+    profileExtraElement.textContent = inputExtraElement.value;
+    popupProfileWithForm.close();
+}
 
-openPopupElement.addEventListener('click', openCardPopupWithForm);
-// formProfile.addEventListener('submit', submitProfileForm);
+
+
+
+
+
 
 
