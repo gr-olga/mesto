@@ -27,8 +27,9 @@ const config = {
 
 const cardValidationProfile = new FormValidator(config, formProfile);
 const cardValidationCardElement = new FormValidator(config, formCardElement);
-cardValidationProfile.enableValidation()
-cardValidationCardElement.enableValidation()
+//TODO enable validation!!!!!!!!!!!!!!
+// cardValidationProfile.enableValidation()
+// cardValidationCardElement.enableValidation()
 
 const cardGridSelector = '.cards-grid'
 
@@ -48,7 +49,7 @@ function handleCardClick(link, title) {
     popupWithImage.open(link, title);
 }
 
-const popupCardWithForm = new PopupWithForm('#add_card_popup', () => submitCardForm())
+const popupCardWithForm = new PopupWithForm('#add_card_popup', inputData => submitCardForm(inputData))
 openAddCardPopupElement.addEventListener('click', () => {
     popupCardWithForm.open();
     cardValidationCardElement.resetValidation();
@@ -56,15 +57,13 @@ openAddCardPopupElement.addEventListener('click', () => {
 popupCardWithForm.setEventListeners();
 
 
-function submitCardForm() {
-    const titleValue = inputCardTitleElement.value
-    const linkValue = inputCardLinkElement.value
-    const cardElement = createCard(linkValue, titleValue, handleCardClick);
+function submitCardForm({cardTitle, link}) {
+    const cardElement = createCard(link, cardTitle, handleCardClick);
     section.addItem(cardElement);
     popupCardWithForm.close();
 }
 
-const popupProfileWithForm = new PopupWithForm('#edit_profile_popup', () => submitProfileForm())
+const popupProfileWithForm = new PopupWithForm('#edit_profile_popup', (inputData) => submitProfileForm(inputData))
 openPopupElement.addEventListener('click', () => {
     popupProfileWithForm.open();
     cardValidationProfile.resetValidation();
@@ -73,13 +72,12 @@ popupProfileWithForm.setEventListeners();
 
 
 const userInfo = new UserInfo({
-    nameSelector: '.popup__input[name="profileName"]',
-    infoSelector: '.popup__input[name="extra"]'
+    nameSelector: '.profile__name',
+    infoSelector: '.profile__extra'
 })
 
-function submitProfileForm() {
-    const info = userInfo.getUserInfo();
-    userInfo.setUserInfo(info);
+function submitProfileForm(inputData) {
+    userInfo.setUserInfo(inputData);
     popupProfileWithForm.close();
 }
 
