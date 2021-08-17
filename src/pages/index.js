@@ -6,6 +6,7 @@ import {PopupWithImage} from "../conponents/PopupWithImage";
 import {PopupWithForm} from "../conponents/PopupWithForm";
 import {UserInfo} from "../conponents/UserInfo";
 import {initialCards} from "../utils/data";
+import {validate} from "@babel/core/lib/config/validation/options";
 
 const openPopupElement = document.querySelector('.profile__edit-button');
 const openAddCardPopupElement = document.querySelector('.profile__add-card-button');
@@ -13,8 +14,6 @@ const openAddCardPopupElement = document.querySelector('.profile__add-card-butto
 const formProfile = document.querySelector('.popup__form[name = "profileInfo"]');
 const formCardElement = document.querySelector('.popup__form[name = "newPlace"]');
 
-const inputCardTitleElement = document.querySelector('.popup__input[name="cardTitle"]');
-const inputCardLinkElement = document.querySelector('.popup__input[name="link"]');
 
 const config = {
     formSelector: '.popup__form',
@@ -27,9 +26,8 @@ const config = {
 
 const cardValidationProfile = new FormValidator(config, formProfile);
 const cardValidationCardElement = new FormValidator(config, formCardElement);
-//TODO enable validation!!!!!!!!!!!!!!
-// cardValidationProfile.enableValidation()
-// cardValidationCardElement.enableValidation()
+cardValidationProfile.enableValidation()
+cardValidationCardElement.enableValidation()
 
 const cardGridSelector = '.cards-grid'
 
@@ -51,8 +49,9 @@ function handleCardClick(link, title) {
 
 const popupCardWithForm = new PopupWithForm('#add_card_popup', inputData => submitCardForm(inputData))
 openAddCardPopupElement.addEventListener('click', () => {
-    popupCardWithForm.open();
     cardValidationCardElement.resetValidation();
+    cardValidationCardElement.disableButton();
+    popupCardWithForm.open();
 });
 popupCardWithForm.setEventListeners();
 
@@ -65,14 +64,12 @@ function submitCardForm({cardTitle, link}) {
 
 const userInfo = new UserInfo({
     nameSelector: '.profile__name',
-    infoSelector: '.profile__extra',
-    nameInputSelector: '.popup__input[name="profileName"]',
-    infoInputSelector: '.popup__input[name="extra"]'
+    infoSelector: '.profile__extra'
 })
 const popupProfileWithForm = new PopupWithForm('#edit_profile_popup', (inputData) => submitProfileForm(inputData))
 openPopupElement.addEventListener('click', () => {
     const info = userInfo.getUserInfo();
-    userInfo.updateFormUserInfo(info);
+    setData(info);
     popupProfileWithForm.open();
     cardValidationProfile.resetValidation();
 });
@@ -84,6 +81,12 @@ function submitProfileForm(inputData) {
     popupProfileWithForm.close();
 }
 
+function setData({name, info}) {
+    const input1 = formProfile.querySelector('.popup__input[name="profileName"]');
+    const input2 = formProfile.querySelector('.popup__input[name="extra"]');
+    input1.value = name;
+    input2.value = info;
+}
 
 
 
