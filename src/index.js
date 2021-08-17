@@ -1,15 +1,11 @@
-import '../styles/index.css';
-import {FormValidator} from "../scripts/FormValidator.js";
-import {Card} from "../scripts/Card.js";
-import {Section} from "../scripts/Section.js";
-import {PopupWithImage} from "../scripts/PopupWithImage";
-import {PopupWithForm} from "../scripts/PopupWithForm";
-import {UserInfo} from "../scripts/UserInfo";
-import {Popup} from "../scripts/Popup";
-import {assertConfigApplicableTest} from "@babel/core/lib/config/validation/option-assertions";
-//
-// const editProfilePopupElement = document.querySelector('#edit_profile_popup');
-// const addCardPopupElement = document.querySelector('#add_card_popup');
+import './styles/index.css';
+import {FormValidator} from "./scripts/FormValidator.js";
+import {Card} from "./scripts/Card.js";
+import {Section} from "./scripts/Section.js";
+import {PopupWithImage} from "./scripts/PopupWithImage";
+import {PopupWithForm} from "./scripts/PopupWithForm";
+import {UserInfo} from "./scripts/UserInfo";
+
 
 const openPopupElement = document.querySelector('.profile__edit-button');
 const openAddCardPopupElement = document.querySelector('.profile__add-card-button');

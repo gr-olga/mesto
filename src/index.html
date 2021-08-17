@@ -11,12 +11,12 @@
 <body class="body">
 <div class="page">
     <header class="header">
-        <img src="<%=require('../images/logo.svg')%>" class="header__logo" alt="Логотип">
+        <img src="<%=require('./images/logo.svg')%>" class="header__logo" alt="Логотип">
         <!--        <img src="../images/logo.svg" class="header__logo" alt="логотип">-->
     </header>
     <main class="content">
         <section class="profile">
-            <img src="<%=require('../images/avatar.png')%>" class="profile__avatar" alt="аватар">
+            <img src="<%=require('./images/avatar.png')%>" class="profile__avatar" alt="аватар">
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <button class="profile__edit-button" type="button"></button>
@@ -27,7 +27,7 @@
         <section class="cards-grid">
             <template id="card">
                 <div class="card">
-                    <button type="button" class="card__remove"><img src="<%=require('../images/bin.svg')%>" alt="bin">
+                    <button type="button" class="card__remove"><img src="<%=require('./images/bin.svg')%>" alt="bin">
                     </button>
                     <img class="card__image" alt="фото">
                     <div class="card__info">
