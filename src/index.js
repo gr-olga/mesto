@@ -4,7 +4,8 @@ import {Card} from "../scripts/Card.js";
 import {Section} from "../scripts/Section.js";
 import {PopupWithImage} from "../scripts/PopupWithImage";
 import {PopupWithForm} from "../scripts/PopupWithForm";
-
+import {UserInfo} from "../scripts/UserInfo";
+import {Popup} from "../scripts/Popup";
 
 const editProfilePopupElement = document.querySelector('#edit_profile_popup');
 const addCardPopupElement = document.querySelector('#add_card_popup');
@@ -72,6 +73,7 @@ const initialCards = [
 ];
 
 const cardGridSelector = '.cards-grid'
+const grid = document.querySelector(cardGridSelector);
 
 function createCard(link, name) {
     const card = new Card(link, name, '#card', handleCardClick);
@@ -83,6 +85,9 @@ const section = new Section({items: initialCards, renderer: createCard}, cardGri
 const renderedElements = section.renderAllElements();
 renderedElements.forEach((item) => section.addItem(item));
 
+const popupCardWithForm = new PopupWithForm('#add_card_popup', () => submitCardForm())
+const popupProfileWithForm = new PopupWithForm('#edit_profile_popup', (evt) => submitProfileForm(evt))
+
 function handleCardClick(link, title) {
     const popupWithImage = new PopupWithImage('.popup_card', link, title);
     popupWithImage.open();
@@ -90,60 +95,42 @@ function handleCardClick(link, title) {
     closeImg.addEventListener('click', () => popupWithImage.close());
 }
 
-
-const openEditPopup = function () {
-    inputNameElement.value = profileNameElement.innerText;
-    inputExtraElement.value = profileExtraElement.innerText;
-    openPopup(editProfilePopupElement);
-    cardValidationProfile.resetValidation();
-}
-
-function submitProfileForm(evt) {
-    evt.preventDefault();
-    const nameValue = inputNameElement.value
-    const extraValue = inputExtraElement.value
-    profileNameElement.textContent = nameValue;
-    profileExtraElement.textContent = extraValue;
-    closePopup(editProfilePopupElement);
-}
-
-const openAddCardPopup = function () {
-    openPopup(addCardPopupElement);
-    formCardElement.reset();
-    cardValidationCardElement.resetValidation();
-    cardValidationCardElement.toggleButtonState();
+function submitProfileForm() {
+    // evt.preventDefault();
+    // const nameValue = inputNameElement.value
+    // const extraValue = inputExtraElement.value
+    // formProfile.setUserInfo();
+    profileNameElement.textContent = inputNameElement.value;
+    profileExtraElement.textContent = inputExtraElement.value;
+    console.log('eRH');
+    popupProfileWithForm.close();
 }
 
 function submitCardForm(evt) {
-    evt.preventDefault();
+    // evt.preventDefault();
     const titleValue = inputCardTitleElement.value
     const linkValue = inputCardLinkElement.value
-    const cardElement = createCard(linkValue, titleValue, createPopupCard);
-    renderCard(cardElement);
-    closePopup(addCardPopupElement);
-    formCardElement.reset();
+    const cardElement = createCard(linkValue, titleValue, handleCardClick);
+    section.addItem(cardElement);
+    popupCardWithForm.close();
+
 }
 
 function openEditPopupWithForm() {
-    const popupWithForm = new PopupWithForm('#edit_profile_popup', () => console.log('xuinya'))
-    popupWithForm.open();
-    popupWithForm.setEventListeners();
+    popupCardWithForm.open();
+    popupCardWithForm.setEventListeners();
 
 }
 
 function openCardPopupWithForm() {
-    const popupWithForm = new PopupWithForm('#add_card_popup', () => console.log('xuinya'))
-    popupWithForm.open();
-    popupWithForm.setEventListeners();
-
+    popupProfileWithForm.open();
+    popupProfileWithForm.setEventListeners();
 }
 
 openAddCardPopupElement.addEventListener('click', openEditPopupWithForm);
-// addPopupCloseButtonElement.addEventListener('click', () => closePopup(addCardPopupElement))
 // formCardElement.addEventListener('submit', submitCardForm);
 
 openPopupElement.addEventListener('click', openCardPopupWithForm);
-// editPopupCloseButtonElement.addEventListener('click', () => closePopup(editProfilePopupElement));
 // formProfile.addEventListener('submit', submitProfileForm);
 
 

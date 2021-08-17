@@ -4,8 +4,9 @@ import {Popup} from "./Popup";
      constructor(popupSelector, submitFormFn) {
          super(popupSelector);
          this._submitFormFn = submitFormFn;
-         this._formElement = document.querySelector('.popup__form');
+         this._formElement = this._popupElement.querySelector('.popup__form');
          this._inputElements = this._formElement.querySelectorAll('.popup__input');
+
      }
 
      _getInputValues() {
@@ -19,7 +20,7 @@ import {Popup} from "./Popup";
 
     setEventListeners() {
         super.setEventListeners();
-        this._popupElement.addEventListener('submit', this._submitFormFn)
+        this._formElement.addEventListener('submit', () => this._submitFormFn())
     }
 
     close() {
