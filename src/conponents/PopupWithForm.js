@@ -6,21 +6,22 @@ import {Popup} from "./Popup";
          this._submitFormFn = submitFormFn;
          this._formElement = this._popupElement.querySelector('.popup__form');
          this._inputElements = this._formElement.querySelectorAll('.popup__input');
-
+         this._formValues = this._formElement.value;
      }
 
      _getInputValues() {
-         const result = {}
-         this._inputElements.forEach(inputEl => {
-            result.key = inputEl.id
-            result.value = inputEl.value
-        })
-        return result;
-    }
+         this._inputList = this._inputElements;
+         this._formValues = {};
+         this._inputList.forEach(input => this._formValues[input.name] = input.value);
+         return this._formValues;
+     }
 
     setEventListeners() {
         super.setEventListeners();
-        this._formElement.addEventListener('submit', (evt) => this._submitFormFn(evt))
+        this._formElement.addEventListener('submit', (evt) => {
+            evt.preventDefault();
+            this._submitFormFn(this._getInputValues())
+        })
     }
 
     close() {

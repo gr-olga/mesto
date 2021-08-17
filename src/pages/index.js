@@ -1,11 +1,11 @@
-import './styles/index.css';
-import {FormValidator} from "./scripts/FormValidator.js";
-import {Card} from "./scripts/Card.js";
-import {Section} from "./scripts/Section.js";
-import {PopupWithImage} from "./scripts/PopupWithImage";
-import {PopupWithForm} from "./scripts/PopupWithForm";
-import {UserInfo} from "./scripts/UserInfo";
-import {initialCards} from "./scripts/data";
+import './index.css';
+import {FormValidator} from "../conponents/FormValidator.js";
+import {Card} from "../conponents/Card.js";
+import {Section} from "../conponents/Section.js";
+import {PopupWithImage} from "../conponents/PopupWithImage";
+import {PopupWithForm} from "../conponents/PopupWithForm";
+import {UserInfo} from "../conponents/UserInfo";
+import {initialCards} from "../utils/data";
 
 const openPopupElement = document.querySelector('.profile__edit-button');
 const openAddCardPopupElement = document.querySelector('.profile__add-card-button');
@@ -41,26 +41,22 @@ const section = new Section({items: initialCards, renderer: createCard}, cardGri
 const renderedElements = section.renderAllElements();
 renderedElements.forEach((item) => section.addItem(item));
 
+const popupWithImage = new PopupWithImage('.popup_card');
+popupWithImage.setEventListeners();
 
 function handleCardClick(link, title) {
-    const popupWithImage = new PopupWithImage('.popup_card', link, title);
-    popupWithImage.open();
-    popupWithImage.setEventListeners();
+    popupWithImage.open(link, title);
 }
 
-const popupCardWithForm = new PopupWithForm('#add_card_popup', (evt) => submitCardForm(evt))
+const popupCardWithForm = new PopupWithForm('#add_card_popup', () => submitCardForm())
 openAddCardPopupElement.addEventListener('click', () => {
-    openEditPopupWithForm();
+    popupCardWithForm.open();
     cardValidationCardElement.resetValidation();
 });
+popupCardWithForm.setEventListeners();
 
-function openEditPopupWithForm() {
-    popupCardWithForm.open();
-    popupCardWithForm.setEventListeners();
-}
 
-function submitCardForm(evt) {
-    evt.preventDefault();
+function submitCardForm() {
     const titleValue = inputCardTitleElement.value
     const linkValue = inputCardLinkElement.value
     const cardElement = createCard(linkValue, titleValue, handleCardClick);
@@ -68,7 +64,7 @@ function submitCardForm(evt) {
     popupCardWithForm.close();
 }
 
-const popupProfileWithForm = new PopupWithForm('#edit_profile_popup', (evt) => submitProfileForm(evt))
+const popupProfileWithForm = new PopupWithForm('#edit_profile_popup', () => submitProfileForm())
 openPopupElement.addEventListener('click', () => {
     openCardPopupWithForm();
     cardValidationProfile.resetValidation();
@@ -84,8 +80,7 @@ const userInfo = new UserInfo({
     infoSelector: '.popup__input[name="extra"]'
 })
 
-function submitProfileForm(evt) {
-    evt.preventDefault();
+function submitProfileForm() {
     const info = userInfo.getUserInfo();
     userInfo.setUserInfo(info);
     popupProfileWithForm.close();
