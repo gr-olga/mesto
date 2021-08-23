@@ -5,8 +5,9 @@ import {Section} from "../conponents/Section.js";
 import {PopupWithImage} from "../conponents/PopupWithImage";
 import {PopupWithForm} from "../conponents/PopupWithForm";
 import {UserInfo} from "../conponents/UserInfo";
-import {initialCards} from "../utils/data";
+// import {initialCards} from "../utils/data";
 import {validate} from "@babel/core/lib/config/validation/options";
+import {api} from "../conponents/Api/Api";
 
 const openPopupElement = document.querySelector('.profile__edit-button');
 const openAddCardPopupElement = document.querySelector('.profile__add-card-button');
@@ -36,9 +37,15 @@ function createCard(link, name) {
     return card.generateCard();
 }
 
-const section = new Section({items: initialCards, renderer: createCard}, cardGridSelector);
-const renderedElements = section.renderAllElements();
-renderedElements.forEach((item) => section.addItem(item));
+// const cardsList = await api.getInitialCards();
+let cardsList = []
+api.getInitialCards().then((data) => {
+    cardsList = data;
+    const section = new Section({items: cardsList, renderer: createCard}, cardGridSelector);
+    const renderedElements = section.renderAllElements();
+    renderedElements.forEach((item) => section.addItem(item));
+})
+
 
 const popupWithImage = new PopupWithImage('.popup_card');
 popupWithImage.setEventListeners();
