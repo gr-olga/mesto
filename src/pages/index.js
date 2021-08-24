@@ -87,8 +87,11 @@ popupProfileWithForm.setEventListeners();
 
 
 function submitProfileForm(inputData) {
-    userInfo.setUserInfo(inputData);
-    popupProfileWithForm.close();
+    return api.updateUserProfile({name: inputData.profileName, about: inputData.extra})
+        .then((data) => {
+            userInfo.setUserInfo({profileName: data.name, extra: data.about});
+            popupProfileWithForm.close();
+        })
 }
 
 function setData({name, info}) {
