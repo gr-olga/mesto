@@ -54,6 +54,24 @@ class Api {
                 return Promise.reject(`Ошибка: ${res.status}`);
             })
     }
+
+    addCard(inputData) {
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-27/cards', {
+            method: 'POST',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(inputData)
+        })
+        // .then(res => {
+        //     if (res.ok) {
+        //         return res.json();
+        //     }
+        //     // если ошибка, отклоняем промис
+        //     return Promise.reject(`Ошибка: ${res.status}`);
+        // })
+    }
 }
 
 export const api = new Api({

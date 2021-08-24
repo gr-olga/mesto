@@ -67,9 +67,11 @@ popupCardWithForm.setEventListeners();
 
 
 function submitCardForm({cardTitle, link}) {
-    const cardElement = createCard(link, cardTitle, handleCardClick);
-    section.addItem(cardElement);
-    popupCardWithForm.close();
+    api.addCard({name: cardTitle, link})
+        .then(() => renderCards())
+        // const cardElement = createCard(link, cardTitle, handleCardClick);
+        // section.addItem(cardElement);
+        .then(() => popupCardWithForm.close())
 }
 
 const userInfo = new UserInfo({

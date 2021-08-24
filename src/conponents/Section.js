@@ -10,7 +10,7 @@ export class Section {
         const elements = []
         this._items.forEach((item) => {
             const el = this._renderer(item.link, item.name);
-            elements.push(el)
+            elements.unshift(el)
         })
         return elements;
     }
