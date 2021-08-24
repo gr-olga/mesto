@@ -4,10 +4,9 @@ import {Card} from "../conponents/Card.js";
 import {Section} from "../conponents/Section.js";
 import {PopupWithImage} from "../conponents/PopupWithImage";
 import {PopupWithForm} from "../conponents/PopupWithForm";
-import {UserInfo} from "../conponents/UserInfo";
 // import {initialCards} from "../utils/data";
-import {validate} from "@babel/core/lib/config/validation/options";
 import {api} from "../conponents/Api/Api";
+import {UserInfo} from "../conponents/UserInfo";
 
 const openPopupElement = document.querySelector('.profile__edit-button');
 const openAddCardPopupElement = document.querySelector('.profile__add-card-button');
@@ -15,6 +14,8 @@ const openAddCardPopupElement = document.querySelector('.profile__add-card-butto
 const formProfile = document.querySelector('.popup__form[name = "profileInfo"]');
 const formCardElement = document.querySelector('.popup__form[name = "newPlace"]');
 
+
+api.getInitialProfile().then((data) => fillProfileData(data))
 
 const config = {
     formSelector: '.popup__form',
@@ -37,15 +38,17 @@ function createCard(link, name) {
     return card.generateCard();
 }
 
-// const cardsList = await api.getInitialCards();
-let cardsList = []
-api.getInitialCards().then((data) => {
-    cardsList = data;
-    const section = new Section({items: cardsList, renderer: createCard}, cardGridSelector);
-    const renderedElements = section.renderAllElements();
-    renderedElements.forEach((item) => section.addItem(item));
-})
+function renderCards() {
+    let cardsList = []
+    api.getInitialCards().then((data) => {
+        cardsList = data;
+        const section = new Section({items: cardsList, renderer: createCard}, cardGridSelector);
+        const renderedElements = section.renderAllElements();
+        renderedElements.forEach((item) => section.addItem(item));
+    })
+}
 
+renderCards();
 
 const popupWithImage = new PopupWithImage('.popup_card');
 popupWithImage.setEventListeners();
@@ -93,6 +96,16 @@ function setData({name, info}) {
     const input2 = formProfile.querySelector('.popup__input[name="extra"]');
     input1.value = name;
     input2.value = info;
+}
+
+function fillProfileData({avatar, name, about}) {
+    const avatarElement = document.querySelector('.profile__avatar');
+    const nameElement = document.querySelector('.profile__name');
+    const extraElement = document.querySelector('.profile__extra');
+    avatarElement.src = avatar;
+    nameElement.textContent = name;
+    extraElement.textContent = about;
+
 }
 
 
