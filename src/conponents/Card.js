@@ -4,7 +4,7 @@ export class Card {
     _cardSelector
     _id
 
-    constructor(link, title, likesArr, id, cardSelector, handleCardClick, updateLikes, deleteLikes) {
+    constructor(link, title, likesArr, id, profileId, cardSelector, handleCardClick, updateLikes, deleteLikes) {
         this._link = link;
         this._title = title;
         this._cardSelector = cardSelector;
@@ -12,7 +12,9 @@ export class Card {
         this._likesArr = likesArr;
         this._updateLikes = updateLikes;
         this._deleteLikes = deleteLikes;
-        this._id = id
+        this._id = id;
+        this._profileId = profileId;
+        // this._likeButtonElement = this._element.querySelector('.card__like');
     }
 
     _getTemplate() {
@@ -26,6 +28,15 @@ export class Card {
         cardImageElement.src = this._link;
         cardImageElement.alt = this._title;
         this._element.querySelector('.card__title').textContent = this._title;
+        this._likeButtonElement = this._element.querySelector('.card__like');
+
+        //todo extract to fn
+        if (this.voteCheck()) {
+            this._likeButtonElement.classList.add('card__like-active')
+        } else {
+            this._likeButtonElement.classList.remove('card__like-active')
+        }
+
         this._addLikeToggle();
         this._addRemoveListener();
         this._addPopupListener();
@@ -34,17 +45,31 @@ export class Card {
     }
 
     _addLikeToggle() {
-        const likeButtonElement = this._element.querySelector('.card__like');
-        likeButtonElement.addEventListener('click', () => {
-            this._setLikesToggleRequest(likeButtonElement).then((res) => {
+        this._likeButtonElement.addEventListener('click', () => {
+            this.setLikeState(this.voteCheck()).then((res) => {
                 return res.json().then((data) => {
-                    likeButtonElement.classList.toggle('card__like-active')
+                    // this._likeButtonElement.classList.toggle('card__like-active')
                     this._likesArr = data.likes;
                     this.likesRender();
                 })
             });
         });
     }
+
+    voteCheck() {
+        return !!this._likesArr.find((like) => like._id === this._profileId);
+    }
+
+    setLikeState(isActive) {
+        if (!isActive) {
+            this._likeButtonElement.classList.add('card__like-active')
+            return this._updateLikes(this._id);
+        } else {
+            this._likeButtonElement.classList.remove('card__like-active')
+            return this._deleteLikes(this._id)
+        }
+    }
+
 
     _setLikesToggleRequest(likeButtonElement) {
         return (likeButtonElement.classList.contains('card__like-active')) ? this._deleteLikes(this._id) : this._updateLikes(this._id);

@@ -14,8 +14,15 @@ const openAddCardPopupElement = document.querySelector('.profile__add-card-butto
 const formProfile = document.querySelector('.popup__form[name = "profileInfo"]');
 const formCardElement = document.querySelector('.popup__form[name = "newPlace"]');
 
+const userInfo = new UserInfo({
+    nameSelector: '.profile__name',
+    infoSelector: '.profile__extra'
+})
 
-api.getInitialProfile().then((data) => fillProfileData(data))
+api.getInitialProfile().then((data) => {
+    userInfo.setId(data._id)
+    fillProfileData(data);
+})
 
 const config = {
     formSelector: '.popup__form',
@@ -34,7 +41,7 @@ cardValidationCardElement.enableValidation()
 const cardGridSelector = '.cards-grid'
 
 function createCard(link, name, likesArr, id) {
-    const card = new Card(link, name, likesArr, id, '#card', handleCardClick, (id) => api.updateLikes(id), (id) => api.deleteLikes(id));
+    const card = new Card(link, name, likesArr, id, userInfo.getId(), '#card', handleCardClick, (id) => api.updateLikes(id), (id) => api.deleteLikes(id));
     return card.generateCard();
 }
 
@@ -81,10 +88,7 @@ function submitCardForm({cardTitle, link}) {
         .then(() => popupCardWithForm.close())
 }
 
-const userInfo = new UserInfo({
-    nameSelector: '.profile__name',
-    infoSelector: '.profile__extra'
-})
+
 const popupProfileWithForm = new PopupWithForm('#edit_profile_popup', (inputData) => submitProfileForm(inputData))
 openPopupElement.addEventListener('click', () => {
     const info = userInfo.getUserInfo();
