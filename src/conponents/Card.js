@@ -29,14 +29,7 @@ export class Card {
         cardImageElement.alt = this._title;
         this._element.querySelector('.card__title').textContent = this._title;
         this._likeButtonElement = this._element.querySelector('.card__like');
-
-        //todo extract to fn
-        if (this.voteCheck()) {
-            this._likeButtonElement.classList.add('card__like-active')
-        } else {
-            this._likeButtonElement.classList.remove('card__like-active')
-        }
-
+        this._checkLikeState()
         this._addLikeToggle();
         this._addRemoveListener();
         this._addPopupListener();
@@ -46,9 +39,8 @@ export class Card {
 
     _addLikeToggle() {
         this._likeButtonElement.addEventListener('click', () => {
-            this.setLikeState(this.voteCheck()).then((res) => {
+            this._setLikeState(this._voteCheck()).then((res) => {
                 return res.json().then((data) => {
-                    // this._likeButtonElement.classList.toggle('card__like-active')
                     this._likesArr = data.likes;
                     this.likesRender();
                 })
@@ -56,11 +48,11 @@ export class Card {
         });
     }
 
-    voteCheck() {
+    _voteCheck() {
         return !!this._likesArr.find((like) => like._id === this._profileId);
     }
 
-    setLikeState(isActive) {
+    _setLikeState(isActive) {
         if (!isActive) {
             this._likeButtonElement.classList.add('card__like-active')
             return this._updateLikes(this._id);
@@ -70,10 +62,14 @@ export class Card {
         }
     }
 
-
-    _setLikesToggleRequest(likeButtonElement) {
-        return (likeButtonElement.classList.contains('card__like-active')) ? this._deleteLikes(this._id) : this._updateLikes(this._id);
+    _checkLikeState() {
+        if (this._voteCheck()) {
+            this._likeButtonElement.classList.add('card__like-active')
+        } else {
+            this._likeButtonElement.classList.remove('card__like-active')
+        }
     }
+
 
     _addPopupListener() {
         const cardImage = this._element.querySelector('.card__image');
