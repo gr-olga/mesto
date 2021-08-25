@@ -4,13 +4,14 @@ export class Card {
     _cardSelector
     _id
 
-    constructor(link, title, likesArr, cardSelector, handleCardClick) {
+    constructor(link, title, likesArr, id, cardSelector, handleCardClick, updateLikes, deleteLikes) {
         this._link = link;
         this._title = title;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
         this._likesArr = likesArr;
-        // this._updateLikes =
+        this._updateLikes = updateLikes;
+        this._deleteLikes = deleteLikes;
         this._id = id
     }
 
@@ -35,13 +36,18 @@ export class Card {
     _addLikeToggle() {
         const likeButtonElement = this._element.querySelector('.card__like');
         likeButtonElement.addEventListener('click', () => {
-            likeButtonElement.classList.toggle('card__like-active');
-            if (likeButtonElement.classList.contains('card__like-active')) {
-                this._deleteLikes(id)
-            } else {
-                this._updateLikes(id);
-            }
+            this._setLikesToggleRequest(likeButtonElement).then((res) => {
+                return res.json().then((data) => {
+                    likeButtonElement.classList.toggle('card__like-active')
+                    this._likesArr = data.likes;
+                    this.likesRender();
+                })
+            });
         });
+    }
+
+    _setLikesToggleRequest(likeButtonElement) {
+        return (likeButtonElement.classList.contains('card__like-active')) ? this._deleteLikes(this._id) : this._updateLikes(this._id);
     }
 
     _addPopupListener() {
@@ -56,13 +62,11 @@ export class Card {
             evt.preventDefault();
             this._element.remove();
             this._element = null;
-        });
+        })
     }
 
 
     likesRender() {
         this._element.querySelector('.card__like-num').textContent = this._likesArr.length;
     }
-
-̵
 }

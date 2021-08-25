@@ -33,8 +33,8 @@ cardValidationCardElement.enableValidation()
 
 const cardGridSelector = '.cards-grid'
 
-function createCard(link, name, likesArr) {
-    const card = new Card(link, name, likesArr, '#card', handleCardClick);
+function createCard(link, name, likesArr, id) {
+    const card = new Card(link, name, likesArr, id, '#card', handleCardClick, (id) => api.updateLikes(id), (id) => api.deleteLikes(id));
     return card.generateCard();
 }
 

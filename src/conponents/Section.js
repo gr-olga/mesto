@@ -9,7 +9,7 @@ export class Section {
     renderAllElements() {
         const elements = []
         this._items.forEach((item) => {
-            const el = this._renderer(item.link, item.name, item.likes);
+            const el = this._renderer(item.link, item.name, item.likes, item._id);
             elements.unshift(el)
         })
         return elements;
