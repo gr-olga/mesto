@@ -66,9 +66,9 @@ class Api {
         })
     }
 
-    updateLikes() {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-27/users/cards', {
-            method: 'PATCH',
+    updateLikes(cardId) {
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-27/users/cards/likes/${cardId}`, {
+            method: 'PUT',
             headers: {
                 authorization: this._token,
                 'Content-Type': 'application/json'
@@ -76,6 +76,16 @@ class Api {
             body: JSON.stringify(
                 {likes: ''}
             )
+        })
+    }
+
+    deleteLikes(cardId) {
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-27/users/cards/likes/${cardId}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            }
         })
     }
 
