@@ -64,14 +64,21 @@ class Api {
             },
             body: JSON.stringify(inputData)
         })
-        // .then(res => {
-        //     if (res.ok) {
-        //         return res.json();
-        //     }
-        //     // если ошибка, отклоняем промис
-        //     return Promise.reject(`Ошибка: ${res.status}`);
-        // })
     }
+
+    updateLikes() {
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-27/users/cards', {
+            method: 'PATCH',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {likes: ''}
+            )
+        })
+    }
+
 }
 
 export const api = new Api({

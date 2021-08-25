@@ -3,11 +3,13 @@ export class Card {
     _title
     _cardSelector
 
-    constructor(link, title, cardSelector, handleCardClick) {
+    constructor(link, title, likesArr, cardSelector, handleCardClick) {
         this._link = link;
         this._title = title;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
+        this._likesArr = likesArr;
+        // this._updateLikes = updateLikes
     }
 
     _getTemplate() {
@@ -24,6 +26,7 @@ export class Card {
         this._addLikeToggle();
         this._addRemoveListener();
         this._addPopupListener();
+        this.likesRender();
         return this._element
     }
 
@@ -31,6 +34,8 @@ export class Card {
         const likeButtonElement = this._element.querySelector('.card__like');
         likeButtonElement.addEventListener('click', () => {
             likeButtonElement.classList.toggle('card__like-active');
+            // this._updateLikes();
+            // this.likeCounter();
         });
     }
 
@@ -48,4 +53,10 @@ export class Card {
             this._element = null;
         });
     }
+
+
+    likesRender() {
+        this._element.querySelector('.card__like-num').textContent = this._likesArr.length;
+    }
+
 }

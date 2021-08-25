@@ -1,0 +1,6 @@
+.card__like-box {
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+    margin-top: 22px;
+}

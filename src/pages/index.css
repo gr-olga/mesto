@@ -20,6 +20,8 @@
 @import "../blocks/card/__like/card__like.css";
 @import "../blocks/card/__title/card__title.css";
 @import "../blocks/card/__like/_active/card__like-active.css";
+@import "../blocks/card/__like-num/card__like-num.css";
+@import "../blocks/card/__like-box/card__like-box.css";
 
 @import "../blocks/card/__remove/card__remove.css";
 

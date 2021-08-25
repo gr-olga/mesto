@@ -33,10 +33,17 @@ cardValidationCardElement.enableValidation()
 
 const cardGridSelector = '.cards-grid'
 
-function createCard(link, name) {
-    const card = new Card(link, name, '#card', handleCardClick);
+function createCard(link, name, likesArr) {
+    const card = new Card(link, name, likesArr, '#card', handleCardClick);
     return card.generateCard();
 }
+
+// TODO CWP
+// 1. add likes counter
+// 2. made markup for likes
+// 3. add likes to renderCard
+// 4. made post and get for likes
+
 
 function renderCards() {
     let cardsList = []
