@@ -139,21 +139,5 @@ function fillProfileData({avatar, name, about}) {
 }
 
 
-// api.getInitialProfile().then(data => {
-//     const userId = data._id;
-//     userInfo.setUserInfo({
-//         name: data.name,
-//         extra: data.about
-//     });
-//     api.getInitialCards().then(data => {
-//         const section = new Section({items: data.map(card =>{
-//             card.UserId = UserId
-//                 return card
-//             }), renderer: createCard}, cardGridSelector);
-//         const renderedElements = section.renderAllElements();
-//         renderedElements.forEach((item) => section.addItem(item));
-//     })
-// })
-
 
 
