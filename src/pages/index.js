@@ -57,13 +57,6 @@ function createCard(link, name, likesArr, id) {
     return card.generateCard();
 }
 
-// TODO CWP
-// 1. add likes counter
-// 2. made markup for likes
-// 3. add likes to renderCard
-// 4. made post and get for likes
-
-
 function renderCards() {
     let cardsList = []
     api.getInitialCards().then((data) => {
@@ -80,11 +73,15 @@ function popupRemove() {
     popupAskRemove.open();
 }
 
-const popupAskRemove = new PopupAskRemove('#small_popup');
+const popupAskRemove = new PopupAskRemove('#small_popup', submitDelete());
 popupAskRemove.setEventListeners();
-// function submitDelete(){
-//    // api.deleteCard(id)
-// }
+
+function submitDelete() {
+    api.deleteCard().then(() => {
+        // todo удалить карточку
+    })
+    popupAskRemove.close();
+}
 
 const popupWithImage = new PopupWithImage('.popup_card');
 popupWithImage.setEventListeners();
@@ -105,11 +102,8 @@ popupCardWithForm.setEventListeners();
 function submitCardForm({cardTitle, link}) {
     api.addCard({name: cardTitle, link})
         .then(() => renderCards())
-        // const cardElement = createCard(link, cardTitle, handleCardClick);
-        // section.addItem(cardElement);
         .then(() => popupCardWithForm.close())
 }
-
 
 const popupProfileWithForm = new PopupWithForm('#edit_profile_popup', (inputData) => submitProfileForm(inputData))
 openPopupElement.addEventListener('click', () => {

@@ -23,7 +23,7 @@ class Api {
     }
 
     deleteCard(cardId) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-27/cards/${cardId}`, {
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-27/cards/`, {
             method: 'DELETE',
             headers: {
                 authorization: this._token,

@@ -84,8 +84,9 @@ export class Card {
             evt.preventDefault();
             this._popupRemove();
             //   this._popupAskRemove(this._id)
-            this._element.remove();
-            this._element = null;
+            //  todo  эти две функции должны вызываться из индекса, после нажатия на поп
+            // this._element.remove();
+            //this._element = null;
         })
     }
 

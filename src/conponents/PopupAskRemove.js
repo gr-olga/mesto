@@ -7,6 +7,14 @@ export class PopupAskRemove extends Popup {
         this._submitDelete = submitDelete
     }
 
+    setEventListeners() {
+        super.setEventListeners();
+        this._btnAgree.addEventListener('click', (evt) => {
+            evt.preventDefault();
+            this._submitDelete()
+        })
+    }
+
     // setDeleteListener() {
     //     super.setEventListeners();
     //     this._formElement.addEventListener('submit', (evt) => {
