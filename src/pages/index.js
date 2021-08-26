@@ -69,18 +69,15 @@ function renderCards() {
 
 renderCards();
 
-function popupRemove() {
+function popupRemove(id) {
+    const popupAskRemove = new PopupAskRemove('#small_popup', () => {
+        api.deleteCard(id).then(() => {
+            popupAskRemove.close();
+            renderCards();
+        })
+    });
+    popupAskRemove.setEventListeners();
     popupAskRemove.open();
-}
-
-const popupAskRemove = new PopupAskRemove('#small_popup', submitDelete());
-popupAskRemove.setEventListeners();
-
-function submitDelete() {
-    api.deleteCard().then(() => {
-        // todo удалить карточку
-    })
-    popupAskRemove.close();
 }
 
 const popupWithImage = new PopupWithImage('.popup_card');

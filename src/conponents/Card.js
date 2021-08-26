@@ -82,14 +82,9 @@ export class Card {
     _addRemoveListener() {
         this._element.querySelector('.card__remove').addEventListener('click', (evt) => {
             evt.preventDefault();
-            this._popupRemove();
-            //   this._popupAskRemove(this._id)
-            //  todo  эти две функции должны вызываться из индекса, после нажатия на поп
-            // this._element.remove();
-            //this._element = null;
+            this._popupRemove(this._id);
         })
     }
-
 
     likesRender() {
         this._element.querySelector('.card__like-num').textContent = this._likesArr.length;

@@ -15,11 +15,4 @@ export class PopupAskRemove extends Popup {
         })
     }
 
-    // setDeleteListener() {
-    //     super.setEventListeners();
-    //     this._formElement.addEventListener('submit', (evt) => {
-    //         evt.preventDefault();
-    //         this._submitDelete()
-    //     })
-    // }
 }
