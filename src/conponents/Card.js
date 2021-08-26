@@ -4,7 +4,7 @@ export class Card {
     _cardSelector
     _id
 
-    constructor(link, title, likesArr, id, profileId, cardSelector, handleCardClick, popupRemove, updateLikes, deleteLikes) {
+    constructor(link, title, likesArr, id, profileId, ownerId, cardSelector, handleCardClick, popupRemove, updateLikes, deleteLikes) {
         this._link = link;
         this._title = title;
         this._cardSelector = cardSelector;
@@ -14,8 +14,10 @@ export class Card {
         this._deleteLikes = deleteLikes;
         this._id = id;
         this._profileId = profileId;
+        this._ownerId = ownerId;
         this._popupRemove = popupRemove;
         // this._likeButtonElement = this._element.querySelector('.card__like');
+        // this._deleteBtn = this._element.querySelector('.card__remove')
     }
 
     _getTemplate() {
@@ -32,7 +34,8 @@ export class Card {
         this._likeButtonElement = this._element.querySelector('.card__like');
         this._checkLikeState()
         this._addLikeToggle();
-        this._addRemoveListener();
+        this._deleteBtn = this._element.querySelector('.card__remove')
+        this.deleteButton()
         this._addPopupListener();
         this.likesRender();
         return this._element
@@ -51,6 +54,17 @@ export class Card {
 
     voteCheck() {
         return !!this._likesArr.find((like) => like._id === this._profileId);
+    }
+
+    ownerCheck() {
+        return this._ownerId === this._profileId;
+    }
+
+    deleteButton() {
+        if (this.ownerCheck()) {
+            this._addRemoveListener();
+            this._deleteBtn.classList.add('card__remove_active');
+        }
     }
 
     _setLikeState(isActive) {
@@ -80,7 +94,7 @@ export class Card {
     }
 
     _addRemoveListener() {
-        this._element.querySelector('.card__remove').addEventListener('click', (evt) => {
+        this._deleteBtn.addEventListener('click', (evt) => {
             evt.preventDefault();
             this._popupRemove(this._id);
         })

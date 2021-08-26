@@ -42,13 +42,14 @@ cardValidationCardElement.enableValidation()
 
 const cardGridSelector = '.cards-grid'
 
-function createCard(link, name, likesArr, id) {
+function createCard(link, name, likesArr, id, ownerId) {
     const card = new Card(
         link,
         name,
         likesArr,
         id,
         userInfo.getId(),
+        ownerId,
         '#card',
         handleCardClick,
         popupRemove,

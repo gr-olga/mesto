@@ -19,6 +19,14 @@ export class UserInfo {
         return this._id
     }
 
+    setOwnerId(id) {
+        this._ownerId = id;
+    }
+
+    getOwnerId(id) {
+        return this._ownerId
+    }
+
     setUserInfo({profileName, extra}) {
         this._profileNameElement.textContent = profileName;
         this._profileExtraElement.textContent = extra;

@@ -1,4 +1,5 @@
 .card__remove {
+    display: none;
     position: absolute;
     border: none;
     background: none;
