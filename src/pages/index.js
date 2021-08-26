@@ -5,11 +5,13 @@ import {Section} from "../conponents/Section.js";
 import {PopupWithImage} from "../conponents/PopupWithImage";
 import {PopupWithForm} from "../conponents/PopupWithForm";
 // import {initialCards} from "../utils/data";
-import {api} from "../conponents/Api/Api";
+import {api} from "../conponents/Api";
 import {UserInfo} from "../conponents/UserInfo";
+import {PopupAskRemove} from "../conponents/PopupAskRemove";
 
 const openPopupElement = document.querySelector('.profile__edit-button');
 const openAddCardPopupElement = document.querySelector('.profile__add-card-button');
+const openPopupDeleteCard = document.querySelector('.card__remove');
 
 const formProfile = document.querySelector('.popup__form[name = "profileInfo"]');
 const formCardElement = document.querySelector('.popup__form[name = "newPlace"]');
@@ -41,7 +43,17 @@ cardValidationCardElement.enableValidation()
 const cardGridSelector = '.cards-grid'
 
 function createCard(link, name, likesArr, id) {
-    const card = new Card(link, name, likesArr, id, userInfo.getId(), '#card', handleCardClick, (id) => api.updateLikes(id), (id) => api.deleteLikes(id));
+    const card = new Card(
+        link,
+        name,
+        likesArr,
+        id,
+        userInfo.getId(),
+        '#card',
+        handleCardClick,
+        popupRemove,
+        (id) => api.updateLikes(id),
+        (id) => api.deleteLikes(id));
     return card.generateCard();
 }
 
@@ -63,6 +75,16 @@ function renderCards() {
 }
 
 renderCards();
+
+function popupRemove() {
+    popupAskRemove.open();
+}
+
+const popupAskRemove = new PopupAskRemove('#small_popup');
+popupAskRemove.setEventListeners();
+// function submitDelete(){
+//    // api.deleteCard(id)
+// }
 
 const popupWithImage = new PopupWithImage('.popup_card');
 popupWithImage.setEventListeners();
@@ -125,8 +147,21 @@ function fillProfileData({avatar, name, about}) {
 }
 
 
-
-
+// api.getInitialProfile().then(data => {
+//     const userId = data._id;
+//     userInfo.setUserInfo({
+//         name: data.name,
+//         extra: data.about
+//     });
+//     api.getInitialCards().then(data => {
+//         const section = new Section({items: data.map(card =>{
+//             card.UserId = UserId
+//                 return card
+//             }), renderer: createCard}, cardGridSelector);
+//         const renderedElements = section.renderAllElements();
+//         renderedElements.forEach((item) => section.addItem(item));
+//     })
+// })
 
 
 

@@ -4,7 +4,7 @@ export class Card {
     _cardSelector
     _id
 
-    constructor(link, title, likesArr, id, profileId, cardSelector, handleCardClick, updateLikes, deleteLikes) {
+    constructor(link, title, likesArr, id, profileId, cardSelector, handleCardClick, popupRemove, updateLikes, deleteLikes) {
         this._link = link;
         this._title = title;
         this._cardSelector = cardSelector;
@@ -14,6 +14,7 @@ export class Card {
         this._deleteLikes = deleteLikes;
         this._id = id;
         this._profileId = profileId;
+        this._popupRemove = popupRemove;
         // this._likeButtonElement = this._element.querySelector('.card__like');
     }
 
@@ -39,7 +40,7 @@ export class Card {
 
     _addLikeToggle() {
         this._likeButtonElement.addEventListener('click', () => {
-            this._setLikeState(this._voteCheck()).then((res) => {
+            this._setLikeState(this.voteCheck()).then((res) => {
                 return res.json().then((data) => {
                     this._likesArr = data.likes;
                     this.likesRender();
@@ -48,7 +49,7 @@ export class Card {
         });
     }
 
-    _voteCheck() {
+    voteCheck() {
         return !!this._likesArr.find((like) => like._id === this._profileId);
     }
 
@@ -63,7 +64,7 @@ export class Card {
     }
 
     _checkLikeState() {
-        if (this._voteCheck()) {
+        if (this.voteCheck()) {
             this._likeButtonElement.classList.add('card__like-active')
         } else {
             this._likeButtonElement.classList.remove('card__like-active')
@@ -81,6 +82,8 @@ export class Card {
     _addRemoveListener() {
         this._element.querySelector('.card__remove').addEventListener('click', (evt) => {
             evt.preventDefault();
+            this._popupRemove();
+            //   this._popupAskRemove(this._id)
             this._element.remove();
             this._element = null;
         })

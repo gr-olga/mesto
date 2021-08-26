@@ -22,6 +22,16 @@ class Api {
             })
     }
 
+    deleteCard(cardId) {
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-27/cards/${cardId}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+
     getInitialProfile() {
         return fetch('https://nomoreparties.co/v1/cohort-27/users/me', {
             headers: {
