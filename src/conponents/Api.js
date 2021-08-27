@@ -65,6 +65,26 @@ class Api {
             })
     }
 
+    updateProfileAvatar(avatar) {
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-27/users/me/avatar', {
+            method: 'PATCH',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                avatar
+            })
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                // если ошибка, отклоняем промис
+                return Promise.reject(`Ошибка: ${res.status}`);
+            })
+    }
+
     addCard(inputData) {
         return fetch('https://mesto.nomoreparties.co/v1/cohort-27/cards', {
             method: 'POST',

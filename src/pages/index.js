@@ -9,16 +9,19 @@ import {api} from "../conponents/Api";
 import {UserInfo} from "../conponents/UserInfo";
 import {PopupAskRemove} from "../conponents/PopupAskRemove";
 
+const openAvatarPopupElement = document.querySelector('.profile__avatar-container');
 const openPopupElement = document.querySelector('.profile__edit-button');
 const openAddCardPopupElement = document.querySelector('.profile__add-card-button');
 const openPopupDeleteCard = document.querySelector('.card__remove');
 
 const formProfile = document.querySelector('.popup__form[name = "profileInfo"]');
 const formCardElement = document.querySelector('.popup__form[name = "newPlace"]');
+const formAvatarElement = document.querySelector('.popup__form[name = "avatarForm"]');
 
 const userInfo = new UserInfo({
     nameSelector: '.profile__name',
-    infoSelector: '.profile__extra'
+    infoSelector: '.profile__extra',
+    avatarSelector: '.profile__avatar'
 })
 
 api.getInitialProfile().then((data) => {
@@ -37,8 +40,10 @@ const config = {
 
 const cardValidationProfile = new FormValidator(config, formProfile);
 const cardValidationCardElement = new FormValidator(config, formCardElement);
+const cardValidationAvatarElement = new FormValidator(config, formAvatarElement)
 cardValidationProfile.enableValidation()
 cardValidationCardElement.enableValidation()
+cardValidationAvatarElement.enableValidation()
 
 const cardGridSelector = '.cards-grid'
 
@@ -109,8 +114,17 @@ openPopupElement.addEventListener('click', () => {
     setData(info);
     popupProfileWithForm.open();
     cardValidationProfile.resetValidation();
+    cardValidationProfile.disableButton();
 });
 popupProfileWithForm.setEventListeners();
+
+const popupAvatarWithForm = new PopupWithForm('#avatar_form', (avatar) => SubmitProfileAvatar(avatar))
+openAvatarPopupElement.addEventListener('click', () => {
+    popupAvatarWithForm.open();
+    cardValidationAvatarElement.resetValidation();
+    cardValidationAvatarElement.disableButton()
+});
+popupAvatarWithForm.setEventListeners();
 
 
 function submitProfileForm(inputData) {
@@ -136,6 +150,13 @@ function fillProfileData({avatar, name, about}) {
     nameElement.textContent = name;
     extraElement.textContent = about;
 
+}
+
+function SubmitProfileAvatar(avatar) {
+    return api.updateProfileAvatar(avatar.link).then((data) => {
+        userInfo.setUserAvatar(data.avatar)
+        popupAvatarWithForm.close()
+    })
 }
 
 

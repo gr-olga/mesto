@@ -5,6 +5,11 @@
     margin-right: 30px;
 }
 
+.profile__avatar:hover {
+    /*background-image: url("../../../images/plus.png");*/
+    opacity: 0.3;
+}
+
 @media screen and (max-width: 500px) {
     .profile__avatar {
         margin-bottom: 22px;

@@ -12,6 +12,7 @@
 @import "../blocks/profile/__edit-button/profile__edit-button.css";
 @import "../blocks/profile/__name/profile__name.css";
 @import "../blocks/profile/__extra/profile__extra.css";
+@import "../blocks/profile/__avatar-container/profile__avatar-container.css";
 
 @import "../blocks/cards-grid/cards-grid.css";
 @import "../blocks/card/card.css";
@@ -38,6 +39,8 @@
 @import "../blocks/popup/__btn/popup__btn-close.css";
 @import "../blocks/popup/_is-open/popup_is-open.css";
 @import "../blocks/popup/__container/container-small/popup__container-small.css";
+@import "../blocks/popup/__container/container-medium/popup__container-medium.css";
+@import "../blocks/popup/__title/_medium/popup__title_medium.css";
 
 @import "../blocks/popup/__card-container/popup__card-container.css";
 @import "../blocks/popup/__img/popup__img.css";

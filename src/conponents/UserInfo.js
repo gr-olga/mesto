@@ -1,7 +1,8 @@
 export class UserInfo {
-    constructor({nameSelector, infoSelector, infoInputSelector, nameInputSelector}) {
+    constructor({nameSelector, infoSelector, avatarSelector}) {
         this._profileNameElement = document.querySelector(nameSelector);
         this._profileExtraElement = document.querySelector(infoSelector);
+        this._profileAvatarElement = document.querySelector(avatarSelector);
     }
 
     getUserInfo() {
@@ -19,17 +20,14 @@ export class UserInfo {
         return this._id
     }
 
-    setOwnerId(id) {
-        this._ownerId = id;
-    }
-
-    getOwnerId(id) {
-        return this._ownerId
-    }
 
     setUserInfo({profileName, extra}) {
         this._profileNameElement.textContent = profileName;
         this._profileExtraElement.textContent = extra;
+    }
+
+    setUserAvatar(avatar) {
+        this._profileAvatarElement.src = avatar;
     }
 
 }
