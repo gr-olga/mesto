@@ -4,7 +4,6 @@ import {Card} from "../conponents/Card.js";
 import {Section} from "../conponents/Section.js";
 import {PopupWithImage} from "../conponents/PopupWithImage";
 import {PopupWithForm} from "../conponents/PopupWithForm";
-// import {initialCards} from "../utils/data";
 import {api} from "../conponents/Api";
 import {UserInfo} from "../conponents/UserInfo";
 import {PopupAskRemove} from "../conponents/PopupAskRemove";
@@ -103,9 +102,13 @@ popupCardWithForm.setEventListeners();
 
 
 function submitCardForm({cardTitle, link}) {
+    popupCardWithForm.renderLoading(true)
     api.addCard({name: cardTitle, link})
         .then(() => renderCards())
-        .then(() => popupCardWithForm.close())
+        .finally(() => {
+            popupCardWithForm.renderLoading(false)
+            popupCardWithForm.close()
+        })
 }
 
 const popupProfileWithForm = new PopupWithForm('#edit_profile_popup', (inputData) => submitProfileForm(inputData))
@@ -128,10 +131,14 @@ popupAvatarWithForm.setEventListeners();
 
 
 function submitProfileForm(inputData) {
+    popupProfileWithForm.renderLoading(true)
     return api.updateUserProfile({name: inputData.profileName, about: inputData.extra})
         .then((data) => {
             userInfo.setUserInfo({profileName: data.name, extra: data.about});
-            popupProfileWithForm.close();
+        })
+        .finally(() => {
+            popupProfileWithForm.renderLoading(false)
+            popupProfileWithForm.close()
         })
 }
 
@@ -153,10 +160,14 @@ function fillProfileData({avatar, name, about}) {
 }
 
 function SubmitProfileAvatar(avatar) {
+    popupAvatarWithForm.renderLoading(true)
     return api.updateProfileAvatar(avatar.link).then((data) => {
         userInfo.setUserAvatar(data.avatar)
-        popupAvatarWithForm.close()
     })
+        .finally(() => {
+            popupAvatarWithForm.renderLoading(false)
+            popupAvatarWithForm.close()
+        })
 }
 
 

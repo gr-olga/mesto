@@ -7,6 +7,7 @@ import {Popup} from "./Popup";
          this._formElement = this._popupElement.querySelector('.popup__form');
          this._inputElements = this._formElement.querySelectorAll('.popup__input');
          this._formValues = this._formElement.value;
+         this.saveBtn = this._popupElement.querySelector('.popup__save');
      }
 
      _getInputValues() {
@@ -24,8 +25,18 @@ import {Popup} from "./Popup";
         })
     }
 
-    close() {
-        super.close();
-        this._formElement.reset();
-    }
-}
+     close() {
+         super.close();
+         this._formElement.reset();
+     }
+
+     renderLoading(isLoading) {
+         if (isLoading) {
+             this.saveBtn.textContent = 'Сохранение...'
+         } else {
+             this.saveBtn.textContent = 'Сохранить'
+
+         }
+     }
+ }
+
