@@ -1,8 +1,8 @@
-.popup__container_medium {
+.popup__container-small {
     display: flex;
     flex-direction: column;
     max-width: 430px;
-    height: 272px;
+    height: 181px;
     background-color: #FFFFFF;
     margin: auto;
     position: relative;
@@ -12,3 +12,11 @@
     margin-top: -140px;
     top: 50%;
 }
+
+@media screen and (max-width: 550px) {
+    .popup__container-small {
+        max-width: 282px;
+        height: 100px;
+    }
+}
+
