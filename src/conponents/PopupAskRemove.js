@@ -15,4 +15,9 @@ export class PopupAskRemove extends Popup {
         })
     }
 
+    close() {
+        super.close();
+        this._btnAgree.removeEventListener('click', this._submitDelete)
+    }
+
 }

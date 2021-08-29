@@ -90,7 +90,6 @@ function popupRemove(id, element) {
         api.deleteCard(id).then(() => {
             popupAskRemove.close();
             element.remove();
-            // renderCards();
         })
     });
     popupAskRemove.setEventListeners();
@@ -116,10 +115,11 @@ popupCardWithForm.setEventListeners();
 function submitCardForm({cardTitle, link}) {
     popupCardWithForm.renderLoading(true)
     api.addCard({name: cardTitle, link})
-        .then(() => renderCards())
+        .then((res) => res.json())
+        .then((item) => section.addItem(createCard(item)))
+        .then(() => popupCardWithForm.close())
         .finally(() => {
             popupCardWithForm.renderLoading(false)
-            popupCardWithForm.close()
         })
 }
 
