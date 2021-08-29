@@ -1,5 +1,10 @@
 const token = '0f33f4c7-0e3e-4427-807e-866f8ecb2bfc'
-
+const handleResponse = (res) => {
+    if (!res.ok) {
+        return Promise.reject(`Error: ${res.status}`);
+    }
+    return res.json();
+}
 class Api {
     constructor(options) {
         // тело конструктора
@@ -7,19 +12,14 @@ class Api {
 
     _token = token;
 
+
     getInitialCards() {
         return fetch('https://mesto.nomoreparties.co/v1/cohort-27/cards', {
             headers: {
                 authorization: this._token
             }
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
+            .then(handleResponse);
     }
 
     deleteCard(cardId) {
@@ -38,13 +38,7 @@ class Api {
                 authorization: this._token
             }
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
+            .then(handleResponse);
     }
 
     updateUserProfile(inputData) {
@@ -56,13 +50,7 @@ class Api {
             },
             body: JSON.stringify(inputData)
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
+            .then(handleResponse);
     }
 
     updateProfileAvatar(avatar) {
@@ -76,13 +64,7 @@ class Api {
                 avatar
             })
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
+            .then(handleResponse);
     }
 
     addCard(inputData) {
