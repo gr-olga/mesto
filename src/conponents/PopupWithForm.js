@@ -7,7 +7,15 @@ import {Popup} from "./Popup";
          this._formElement = this._popupElement.querySelector('.popup__form');
          this._inputElements = this._formElement.querySelectorAll('.popup__input');
          this._formValues = this._formElement.value;
+         this._id = null;
+         this._element = null;
          this.saveBtn = this._popupElement.querySelector('.popup__save');
+     }
+
+     open(id, element) {
+         super.open();
+         this._id = id;
+         this._element = element
      }
 
      _getInputValues() {
@@ -17,8 +25,8 @@ import {Popup} from "./Popup";
          return this._formValues;
      }
 
-    setEventListeners() {
-        super.setEventListeners();
+     setEventListeners() {
+         super.setEventListeners();
         this._formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
             this._submitFormFn(this._getInputValues())

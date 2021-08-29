@@ -3,7 +3,7 @@ import {Popup} from "./Popup";
 export class PopupAskRemove extends Popup {
     constructor(popupSelector, submitDelete) {
         super(popupSelector);
-        this._btnAgree = document.querySelector('.popup__save_small')
+        this._btnAgree = document.querySelector('.popup__save-small')
         this._submitDelete = submitDelete
     }
 

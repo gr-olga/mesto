@@ -81,21 +81,20 @@ function renderCards() {
             console.log(err);
         });
     // api.getInitialCards().then((data) => {
-
-
 }
 
 renderCards();
 
-function popupRemove(id) {
+function popupRemove(id, element) {
     const popupAskRemove = new PopupAskRemove('#small_popup', () => {
         api.deleteCard(id).then(() => {
             popupAskRemove.close();
-            renderCards();
+            element.remove();
+            // renderCards();
         })
     });
     popupAskRemove.setEventListeners();
-    popupAskRemove.open();
+    popupAskRemove.open(id, popupAskRemove);
 }
 
 const popupWithImage = new PopupWithImage('.popup_card');

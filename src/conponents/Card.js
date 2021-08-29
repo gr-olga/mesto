@@ -38,14 +38,13 @@ export class Card {
         this.deleteButton()
         this._addPopupListener();
         this.likesRender();
-        return this._element
+        return this._element;
     }
 
     _addLikeToggle() {
         this._likeButtonElement.addEventListener('click', () => {
             this._setLikeState(this.voteCheck()).then((res) => {
                 return res.json().then((data) => {
-
                     this._likesArr = data.likes;
                     this.likesRender();
                 })
@@ -97,7 +96,7 @@ export class Card {
     _addRemoveListener() {
         this._deleteBtn.addEventListener('click', (evt) => {
             evt.preventDefault();
-            this._popupRemove(this._id);
+            this._popupRemove(this._id, this._element);
         })
     }
 
