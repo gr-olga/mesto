@@ -23,10 +23,6 @@ const userInfo = new UserInfo({
     avatarSelector: '.profile__avatar'
 })
 
-// api.getInitialProfile().then((data) => {
-//     userInfo.setId(data._id)
-//     fillProfileData(data);
-// })
 
 const config = {
     formSelector: '.popup__form',
@@ -77,10 +73,8 @@ function renderCards() {
             renderedElements.forEach((item) => section.addItem(item));
         })
         .catch((err) => {
-            // попадаем сюда, если один из промисов завершится ошибкой
             console.log(err);
         });
-    // api.getInitialCards().then((data) => {
 }
 
 renderCards();
