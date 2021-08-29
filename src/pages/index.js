@@ -46,27 +46,29 @@ cardValidationAvatarElement.enableValidation()
 
 const cardGridSelector = '.cards-grid'
 
-function createCard(link, name, likesArr, id, ownerId) {
+function createCard(item) {
     const card = new Card(
-        link,
-        name,
-        likesArr,
-        id,
+        item.link,
+        item.name,
+        item.likes,
+        item.id,
         userInfo.getId(),
-        ownerId,
+        item.owner.id,
         '#card',
         handleCardClick,
         popupRemove,
-        (id) => api.updateLikes(id),
-        (id) => api.deleteLikes(id));
+        (id) => api.updateLikes(item.id),
+        (id) => api.deleteLikes(item.id));
     return card.generateCard();
 }
+
+let section = null;
 
 function renderCards() {
     let cardsList = []
     api.getInitialCards().then((data) => {
         cardsList = data;
-        const section = new Section({items: cardsList, renderer: createCard}, cardGridSelector);
+        section = new Section({items: cardsList, renderer: createCard}, cardGridSelector);
         const renderedElements = section.renderAllElements();
         renderedElements.forEach((item) => section.addItem(item));
     })
