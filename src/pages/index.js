@@ -23,10 +23,10 @@ const userInfo = new UserInfo({
     avatarSelector: '.profile__avatar'
 })
 
-api.getInitialProfile().then((data) => {
-    userInfo.setId(data._id)
-    fillProfileData(data);
-})
+// api.getInitialProfile().then((data) => {
+//     userInfo.setId(data._id)
+//     fillProfileData(data);
+// })
 
 const config = {
     formSelector: '.popup__form',
@@ -51,27 +51,38 @@ function createCard(item) {
         item.link,
         item.name,
         item.likes,
-        item.id,
+        item._id,
         userInfo.getId(),
-        item.owner.id,
+        item.owner._id,
         '#card',
         handleCardClick,
         popupRemove,
-        (id) => api.updateLikes(item.id),
-        (id) => api.deleteLikes(item.id));
+        (id) => api.updateLikes(item._id),
+        (id) => api.deleteLikes(item._id));
     return card.generateCard();
 }
 
 let section = null;
 
 function renderCards() {
-    let cardsList = []
-    api.getInitialCards().then((data) => {
-        cardsList = data;
-        section = new Section({items: cardsList, renderer: createCard}, cardGridSelector);
-        const renderedElements = section.renderAllElements();
-        renderedElements.forEach((item) => section.addItem(item));
-    })
+    Promise.all([
+        api.getInitialProfile(),
+        api.getInitialCards(),
+    ])
+        .then(([profile, cardsList]) => {
+            userInfo.setId(profile._id)
+            fillProfileData({avatar: profile.avatar, name: profile.name, about: profile.about});
+            section = new Section({items: cardsList, renderer: createCard}, cardGridSelector);
+            const renderedElements = section.renderAllElements();
+            renderedElements.forEach((item) => section.addItem(item));
+        })
+        .catch((err) => {
+            // попадаем сюда, если один из промисов завершится ошибкой
+            console.log(err);
+        });
+    // api.getInitialCards().then((data) => {
+
+
 }
 
 renderCards();

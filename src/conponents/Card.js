@@ -45,6 +45,7 @@ export class Card {
         this._likeButtonElement.addEventListener('click', () => {
             this._setLikeState(this.voteCheck()).then((res) => {
                 return res.json().then((data) => {
+
                     this._likesArr = data.likes;
                     this.likesRender();
                 })
