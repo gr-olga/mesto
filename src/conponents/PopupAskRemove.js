@@ -11,8 +11,14 @@ export class PopupAskRemove extends Popup {
         super.setEventListeners();
         this._btnAgree.addEventListener('click', (evt) => {
             evt.preventDefault();
-            this._submitDelete()
+            this._submitDelete(this._id, this._element);
         })
+    }
+
+    open(id, element) {
+        super.open();
+        this._id = id;
+        this._element = element
     }
 
     close() {

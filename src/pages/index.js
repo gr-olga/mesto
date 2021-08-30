@@ -52,7 +52,7 @@ function createCard(item) {
         item.owner._id,
         '#card',
         handleCardClick,
-        popupRemove,
+        (id, element) => showRemovePopup(id, element),
         (id) => api.updateLikes(item._id),
         (id) => api.deleteLikes(item._id));
     return card.generateCard();
@@ -79,15 +79,18 @@ function renderCards() {
 
 renderCards();
 
-function popupRemove(id, element) {
-    const popupAskRemove = new PopupAskRemove('#small_popup', () => {
-        api.deleteCard(id).then(() => {
-            popupAskRemove.close();
-            element.remove();
-        })
-    });
-    popupAskRemove.setEventListeners();
-    popupAskRemove.open(id, popupAskRemove);
+const popupAskRemove = new PopupAskRemove('#small_popup', (id, element) => submitDelete(id, element));
+popupAskRemove.setEventListeners();
+
+function showRemovePopup(id, element) {
+    popupAskRemove.open(id, element);
+}
+
+function submitDelete(id, element) {
+    api.deleteCard(id).then(() => {
+        popupAskRemove.close();
+        element.remove();
+    })
 }
 
 const popupWithImage = new PopupWithImage('.popup_card');
