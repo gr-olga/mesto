@@ -43,11 +43,9 @@ export class Card {
 
     _addLikeToggle() {
         this._likeButtonElement.addEventListener('click', () => {
-            this._setLikeState(this.voteCheck()).then((res) => {
-                return res.json().then((data) => {
-                    this._likesArr = data.likes;
-                    this.likesRender();
-                })
+            this._setLikeState(this.voteCheck()).then((data) => {
+                this._likesArr = data.likes;
+                this.likesRender();
             });
         });
     }

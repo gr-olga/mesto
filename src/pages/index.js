@@ -112,7 +112,6 @@ popupCardWithForm.setEventListeners();
 function submitCardForm({cardTitle, link}) {
     popupCardWithForm.renderLoading(true)
     api.addCard({name: cardTitle, link})
-        .then((res) => res.json())
         .then((item) => section.addItem(createCard(item)))
         .then(() => popupCardWithForm.close())
         .finally(() => {
@@ -130,7 +129,7 @@ openPopupElement.addEventListener('click', () => {
 });
 popupProfileWithForm.setEventListeners();
 
-const popupAvatarWithForm = new PopupWithForm('#avatar_form', (avatar) => SubmitProfileAvatar(avatar))
+const popupAvatarWithForm = new PopupWithForm('#avatar_form', (avatar) => submitProfileAvatar(avatar))
 openAvatarPopupElement.addEventListener('click', () => {
     popupAvatarWithForm.open();
     cardValidationAvatarElement.resetValidation();
@@ -168,7 +167,7 @@ function fillProfileData({avatar, name, about}) {
 
 }
 
-function SubmitProfileAvatar(avatar) {
+function submitProfileAvatar(avatar) {
     popupAvatarWithForm.renderLoading(true)
     return api.updateProfileAvatar(avatar.link).then((data) => {
         userInfo.setUserAvatar(data.avatar)

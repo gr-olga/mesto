@@ -76,6 +76,7 @@ class Api {
             },
             body: JSON.stringify(inputData)
         })
+            .then(handleResponse);
     }
 
     updateLikes(cardId) {
@@ -89,6 +90,7 @@ class Api {
                 {likes: ''}
             )
         })
+            .then(handleResponse);
     }
 
     deleteLikes(cardId) {
@@ -99,6 +101,7 @@ class Api {
                 'Content-Type': 'application/json'
             }
         })
+            .then(handleResponse);
     }
 
 }
